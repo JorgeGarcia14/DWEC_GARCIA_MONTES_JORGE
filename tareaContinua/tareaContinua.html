@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        /*RAMA TAREACONTINUA1 */
+        /*RAMA TAREACONTINUA 2 */
         var listaContactos = [
 
             persona1 = {
@@ -33,7 +33,10 @@
         ];
 
         listaContactos.push(persona4 = { nombre: "Maisie Haley", telefono: "0913 531 3030", correo: "risus.Quisque@urna.ca" });
-        console.log(listaContactos);
+
+        console.log(listaContactos[0].nombre + " / " + listaContactos[0].telefono + " / " + listaContactos[0].correo);
+
+        console.log(listaContactos[listaContactos.length - 1].nombre + " / " + listaContactos[listaContactos.length - 1].telefono + " / " + listaContactos[listaContactos.length - 1].correo);
     </script>
 </body>
 
