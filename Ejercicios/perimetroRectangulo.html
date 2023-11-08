@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perimetro Rectangulo</title>
+</head>
+<body>
+    <script>
+        /*function perimetroRectangulo(a,b){
+            
+            if(!parseFloat(a).toString().includes(".") || !parseFloat(b).toString().includes(".")){
+                return ("Alguno de los 2 valores no son decimales");
+            }
+            else{
+                alert("ESTYO ");
+                var perimetro= 2 * (a+b);
+                perimetro=perimetro.toFixed(2);
+            }
+            return perimetro;
+        }
+        alert(perimetroRectangulo(11.50 , 2.00)); */ 
+        function perimetroTriangulo (a,b){
+            if (!parseFloat(a).toString().includes(".") || !parseFloat(b).toString().includes(".")){
+                return ("No me das un decimal");
+            }
+            else{
+                
+                a = parseFloat(a);//Convierte a float los numeros dados
+                b = parseFloat(b);
+                return (2 * (a + b)).toFixed(2); //Redondea a dos decimales
+            }     
+        }
+        alert (perimetroTriangulo(4.5,8.34));  
+        </script>
+</body>
+</html>

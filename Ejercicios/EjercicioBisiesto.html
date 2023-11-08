@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Año bisiesto</title>
+</head>
+<body>
+    <script>
+       function esBisiesto(año){
+            var confirmar=0;
+            var añoCortado= año.toString().substr(-2);
+            if(añoCortado="00" && año%400==0){
+                    confirmar=1;
+            }
+            
+           else if(año%4==0){
+                if(año%100!=0){
+                    confirmar=1;
+                }
+                
+            }
+            return confirmar;
+        }
+        alert(esBisiesto(2004));
+        alert(esBisiesto(100));
+        alert(esBisiesto(2001));
+        alert(esBisiesto(2024));
+        alert(esBisiesto(1300));
+        alert(esBisiesto(4));
+        
+
+    </script>
+</body>
+</html>

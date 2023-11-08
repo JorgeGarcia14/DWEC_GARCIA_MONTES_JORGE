@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de String</title>
+</head>
+
+<body>
+    <script>
+       /* var miTexto = "Mano";
+        alert(miTexto[0]);
+        alert(miTexto.codePointAt(0).toString(16)); //codePointAt devuelve el codigo ASCII (codigo decimal), y si lo unimos a toString(16) 
+        //nos lo muestra en HEXADECIMAL si ponemos un numero mayo que la longitud del string, da undefined. 
+        alert(String.fromCodePoint(77)); //Conseguimos con ese codigo el simbolo del codigo ASCII, en este caso M
+
+        	Realiza una aplicación web que solicite una cadena de texto. El programa debe decir cuántas veces ocurre cada uno de 
+        estos patrones sin distinguir mayúsculas y minúsculas: “00” “101”, “ABC”, “H0”.
+        Un carácter puede formar parte de más de un patrón encontrado. Por ejemplo:
+        En la cadena “000” el patrón “00” aparece dos veces (una empieza en la posición 0 y otra empieza en la posición 1).
+        Internamente el programa realizará la cuenta de patrones con una función definida como function numeroPatrones(texto) 
+        que devolverá un número entero con el número de patrones encontrados. 
+        Ejemplo:
+        1110101000ABCHO	
+
+        var patron= prompt("Escribe el patron deseado");
+        for (i=0;i<patron.length;i++){
+            var cont=0;
+            if (patron.slice(i).includes("00") || patron.slice(i).includes("101") || patron.slice(i).includes("ABC") || patron.slice(i).includes("H0")){
+                cont++;
+            }
+        }
+        alert(cont);*/
+        function numeroPatrones(texto) {
+            const patrones = ["00", "101", "ABC", "H0"];
+            
+            for(i=0;i<patrones.length;i++){
+                let contador = 0;
+                let posicion=0;
+                while (posicion!==-1){
+                    posicion= texto.indexOf(patrones[i],posicion);
+                    if(posicion!==-1){
+                        contador++;
+                        posicion+=1;
+                    }
+                }   
+                alert("El patron " + patrones[i] + " aparece " + contador + " veces");
+            }
+            
+        }
+
+        numeroPatrones(prompt("Ingrese el texto deseado"));
+    </script>
+</body>
+
+</html>

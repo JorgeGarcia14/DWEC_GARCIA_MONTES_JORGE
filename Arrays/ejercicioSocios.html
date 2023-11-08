@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let socios = [];
+        for (let i = 1; i < 11; i++) {
+            socios.push(prompt(`¿Dime el nombre del socio numero ${i}?`));
+        }
+
+        console.log(socios);
+        let copiaSocios = socios.slice(); //slice devuelve un subarray con los elementos indicados sin modificar el array original
+        console.log(`Hay ${socios.length} socios en total`);
+        console.log(copiaSocios.sort());
+        console.log(socios.reverse());
+    </script>
+</body>
+
+</html>

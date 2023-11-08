@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let fechaAhora = new Date(); //SIN PARAMETROS INDICA LA HORA ACTUAL      
+        
+        console.log(fechaAhora);
+        let fecha1 = new Date("Wed Mar 25 2015 09:15 GMT +0100");
+        let fecha2 = new Date("October 12 2023");
+        let fecha3 = new Date("2023-05-27");
+        let fecha4 = new Date("2020"); //Coge el 1 de enero si no se especifica mes
+        
+        console.log("Poniendo en Date('Wed Mar 25 2015 09:15 GMT +0100') saca: " + fecha1);
+        console.log("Poniendo en Date('October 12 2023') saca: " + fecha2);
+        console.log("Poniendo en Date('2023-05-27') saca: " + fecha3);
+        console.log("Poniendo en Date('2020') saca: " + fecha4); //fecha devuelve un String. Hace un fecha4.toString por defecto.
+
+        console.log ("FechaAhora: " + fechaAhora); //Toda la info:                Fri Oct 27 2023 10:15:53 GMT+0200 (hora de verano de Europa central)
+        console.log ("FechaAhora.toString: " + fechaAhora.toString()); //         Fri Oct 27 2023 10:15:53 GMT+0200 (hora de verano de Europa central)
+        console.log ("FechaAhora.toUTCString: " + fechaAhora.toUTCString()); //   Fri, 27 Oct 2023 08:15:53 GMT
+        console.log ("FechaAhora.toDateString: " + fechaAhora.toDateString()); // Fri Oct 27 2023
+
+        let fechaMili = new Date(864000000);
+        console.log("Fecha con 86400000 da: " + fechaMili);
+
+        //METODOS
+        //getDay devuelve el dia de la semana 0 domingo 6 sabado
+        //getDate devuele del dia del mes
+        //getMonth devuelve el mes
+        //getFullYear devuelve el año
+        //getHours devuelve la hora
+        //getMinutes devuelve los minutos
+        //getSeconds devuelve los segundos
+
+        //EJERCICIO. CALCULAR LOS DIAS QUE HAN PASADO ENTRE HOY Y EL DIA 7 DE MAYO DE 1950
+        let fechaActual = new Date();
+        let fechaAntiguaMili = new Date ("1990-05-07");
+        let añoEnMilisegundos= 365*24*60*60*1000; //ESTO DA CUANTOS MILISEGUNDOS TIENE UN AÑO
+        let mesEnMilisegundos= añoEnMilisegundos/12; //ESTO DA CUANTOS MILISEGUNDOS TIENE UN MES
+        let diaEnMilisegundos= mesEnMilisegundos/30; //ESTO DA CUANTOS MILISEGUNDOS TIENE UN DIA
+        let horaEnMilisegundos= diaEnMilisegundos/24; //ESTO DA CUANTOS MILISEGUNDOS TIENE UNA HORA
+        let minutoEnMilisegundos= horaEnMilisegundos/60; //ESTO DA CUANTOS MILISEGUNDOS TIENE UN MINUTI
+        let segundoEnMilisegundos= minutoEnMilisegundos/60; //ESTO DA CUANTOS MILISEGUNDOS TIENE UN SEGUNDO
+
+        let resultadoEnMilisegundos= fechaActual-fechaAntiguaMili;
+        let diasPasados= parseInt(resultadoEnMilisegundos/(1000*60*60*24));
+        let horasPasadas = parseInt(diasPasados*horaEnMilisegundos);
+        let minutosPasados = parseInt(horasPasadas*minutoEnMilisegundos);
+        let segundosPasados = parseInt(minutosPasados*segundoEnMilisegundos);
+        let mesesPasados= parseInt(resultadoEnMilisegundos/mesEnMilisegundos);
+        let añosPasados= parseInt(resultadoEnMilisegundos/añoEnMilisegundos);
+        alert("El resultado es: " + resultadoEnMilisegundos + " milisegundos entre ambas fechas");
+        alert("El tiempo que ha pasado entre las dos fechas es de " + diasPasados + " dias");
+        alert("El tiempo que ha pasado entre las dos fechas es de " + mesesPasados + " meses");
+        alert("El tiempo que ha pasado entre las dos fechas es de " + añosPasados + " años");
+
+        segundosPasados %= 60;
+        minutosPasados %= 60;
+        horasPasadas %= 24;
+        diasPasados %= 30;
+        mesesPasados %= 12;
+
+
+        let arrayTiempo = [
+            {dias : diasPasados, meses : mesesPasados, años : añosPasados}, 
+
+            {horas : horasPasadas, minutos : minutosPasados, segundos : segundosPasados}
+        ];
+
+        console.log(arrayTiempo);
+    </script>
+</body>
+</html>
