@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /* 1. Crea un objeto llamado tvSamsung con las propiedades nombre (TV Samsung 42”), categoría (Televisores), 
+        unidades (4), precio (345.95) y con un método llamado importe que devuelve el valor total de las unidades 
+        (nº de unidades * precio) */
+
+        let tvSamsung = {
+            nombre: "TV Samsung 42",
+            categoría: "Televisores",
+            unidades: 4,
+            precio: 345.95,
+            importe: function () { return unidades * precio }
+        }
+
+        /* 2. Crea un objeto Productos con las propiedades y métodos del ejercicio anterior. 
+        Además tendrá un método getInfo que devolverá: ‘Nombre (categoría): unidades uds x precio € = importe €’. 
+        Crea 3 productos diferentes.*/
+
+        function Productos(nom, cat, uni, prec) {
+            this.nombre = nom;
+            this.categoria = cat;
+            this.unidades = uni;
+            this.precio = prec;
+        }
+
+        Productos.prototype.importe = function () {
+            return this.unidades * this.precio;
+        }
+
+        Productos.prototype.getInfo = function () {
+            return this.nombre + " (" + this.categoria + "): " + this.unidades + " x " + this.precio + "€ = " + this.importe() + "€";
+        }
+
+        let lavadora = new Productos("Lavadora", "Electrodomésticos", 7, 350);
+        let microondas = new Productos("Microondas", "Electrodomésticos", 2, 65);
+        let radio = new Productos("Radio", "Musica", 100, 15);
+
+        for (let a in microondas) {
+            console.log(microondas[a]); // SI SOLO PONEMOS DEVUELVE NOMBRE, CATEGORIA, UNIDADES...
+        }
+
+        console.log(lavadora.getInfo());
+
+        /* 3. Crea un Objeto Televisores que hereda de Productos y que tiene una nueva propiedad llamada tamaño. 
+        El método getInfo mostrará el tamaño junto al nombre*/
+
+        function Televisores(nom, cat, uni, prec, tam) {
+            Productos.call(this, nom, cat, uni, prec);
+            this.tamaño = tam;
+        }
+
+        Televisores.prototype = Object.create(Productos.prototype); // ASIGNA HERENCIA DE QUE TELEVISORES HEREDA DE PRODUCTOS
+
+        Televisores.prototype.getInfo = function () {
+            return this.nombre + "Tamaño: " + this.tamaño + " (" + this.categoria + "): " + this.unidades + " x " + this.precio + "€ = " + this.importe() + "€";
+        }
+
+        var miTelevisor = new Televisores("Mi Televisor", "Electrónicos", 1, 500, "55 pulgadas");// Crear una instancia de Televisores
+
+        console.log("PRECIO DEL TELEVISOR \n" + miTelevisor.importe());// Obtener la información del televisor
+
+
+        /* 4. Modifica los Objetos Productos y Televisores, para que contenga la función ”toString”.
+         Esta función debe devolver una cadena de texto (La que consideres oportuna).*/
+
+        Productos.prototype.toString = function () {
+            return "Producto: " + this.nombre + "\nCategoría: " + this.categoria + "\nUnidades: " + this.unidades + "\nPrecio: " + this.precio + "€";
+        }
+
+        Televisores.prototype.toString = function () {
+            return "Producto: " + this.nombre + "\nCategoría: " + this.categoria + "\nUnidades: " + this.unidades + "\nPrecio: " + this.precio + "€\nTamaño: " + this.tamaño + " pulgadas";
+        }
+
+        console.log("INFORMACION DEL TELEVISOR \n" + miTelevisor.toString());
+
+        /* 5. Modifica los Objetos Productos y Televisores, para que contenga la función ”valueOf”. 
+        Esta función debe devolver un valor numérico(El que consideres oportuno).*/
+        Productos.prototype.valueOf = function () {
+            return 1;
+        }
+
+        Televisores.prototype.valueOf = function () {
+            return 2;
+        }
+
+        console.log("VALUE OF DE TELEVISOR \n" + miTelevisor.valueOf());
+
+        /* 6. Crea 5 productos y guárdalos en un array. Crea las siguientes funciones (todas reciben ese array como parámetro):*/
+        let aspiradora = new Productos("Aspiradora", "Electrodomésticos", 5, 150);
+        let auriculares = new Productos("Auriculares", "Tecnología", 15, 30);
+        let camara = new Productos("Cámara", "Fotografía", 2, 400);
+        let smartphone = new Productos("Smartphone", "Tecnología", 10, 500);
+        let libros = new Productos("Libros", "Librería", 20, 10);
+
+        let arrayProductos = Array();
+
+        arrayProductos.push(aspiradora);
+        arrayProductos.push(auriculares);
+        arrayProductos.push(camara);
+        arrayProductos.push(smartphone);
+        arrayProductos.push(libros);
+
+        //CON FOR NORMAL DEVUELVE LO MISMO QUE EL FOREACH
+        for (let i = 0; i < arrayProductos.length; i++) {
+            
+            console.log("PRODUCTO NUMERO "+ i + "\n" + arrayProductos[i].getInfo());
+        }
+
+        /* CON FOREACH DEVUELVE LOS MISMO QUE CON EL FOR NORMAL
+        arrayProductos.forEach(function (producto) {
+            console.log(producto.getInfo());
+        });*/
+
+    </script>
+</body>
+
+</html>
