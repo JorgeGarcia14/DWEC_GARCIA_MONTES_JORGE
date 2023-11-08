@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        /*RAMA TAREACONTINUA 5 */
+        /*RAMA TAREACONTINUA 6 */
         var listaContactos = [
             persona1 = {
                 nombre: "Maxewll Wright",
@@ -27,54 +27,62 @@
                 correo: "libero@convallis.com"
             }
         ];
-
-        function mostrarPrimerContacto() {
-            console.log("Primer contacto: " + listaContactos[0].nombre + " / " + listaContactos[0].telefono + " / " + listaContactos[0].correo);
-        }
-
-        function mostrarUltimoContacto() {
-            console.log("Último contacto: " + listaContactos[listaContactos.length - 1].nombre + " / " + listaContactos[listaContactos.length - 1].telefono + " / " + listaContactos[listaContactos.length - 1].correo);
-        }
-        function mostrarTodosContactos() {
-            for (i = 0; i < listaContactos.length; i++) {
-                console.log("Contacto numero " + i + ": " + listaContactos[i].nombre + " / " + listaContactos[i].telefono + " / " + listaContactos[i].correo)
+        function showContact(listaContactos, indice) {
+            if (listaContactos instanceof Array && indice < listaContactos.length) {
+                console.log("Contacto numero " + indice + ": " + listaContactos[indice].nombre + " / " + listaContactos[indice].telefono + " / " + listaContactos[indice].correo)
+            }
+            else {
+                console.log("Error en los parametros");
             }
         }
-        function agregarContacto() {
-            var nombrePedido = prompt("Dime el nombre");
-            var telefonoPedido = prompt("Dime el telefono");
-            var correoPedido = prompt("Dime el correo");
 
-            if (nombrePedido && telefonoPedido && correoPedido) {
+        function showAllContacts(listaContactos) {
+            if (listaContactos instanceof Array) {
+                for (i = 0; i < listaContactos.length; i++) {
+                    console.log("Contacto numero " + i + ": " + listaContactos[i].nombre + " / " + listaContactos[i].telefono + " / " + listaContactos[i].correo)
+                }
+            }
+            else {
+                console.log("El parámetro indicado no es válido");
+            }
+
+        }
+
+        function addNewContact(listaContactos, nombreParam, telefonoParam, correoParam) {
+
+            if (nombreParam && telefonoParam && correoParam && listaContactos instanceof Array) {
                 listaContactos.push({
-                    nombre: nombrePedido,
-                    telefono: telefonoPedido,
-                    correo: correoPedido
+                    nombre: nombreParam,
+                    telefono: telefonoParam,
+                    correo: correoParam
                 });
                 console.log("Nuevo contacto agregado.");
             } else {
-                console.log("Falta al menos uno de los tres valores (nombre, teléfono o correo electrónico). No se agregó el contacto.");
+                console.log("Falta al menos uno de los tres valores (nombre, teléfono o correo electrónico) o la lista no es valida. No se agregó el contacto.");
             }
         }
+
         var salir = false;
 
         while (!salir) {
-            var opcion = prompt("¿Qué quieres hacer? primero, ultimo, todos, nuevo o salir");
+            var opcion = prompt("¿Qué quieres hacer? Mostrar uno de los contactos (pulse 1), mostrar todos los contactos (pulse 2), agregar nuevo contacto (pulse 3) o salir (pulse 4)");
 
             switch (opcion) {
-                case "primero":
-                    mostrarPrimerContacto();
+                case "1":
+                    var indice = parseInt(prompt(("Escriba el numero de indice del contacto que desea mostrar, hay " + listaContactos.length + " contactos en la lista:")));
+                    showContact(listaContactos, indice);
                     break;
-                case "ultimo":
-                    mostrarUltimoContacto();
+                case "2":
+                    showAllContacts(listaContactos);
                     break;
-                case "todos":
-                    mostrarTodosContactos();
+                case "3":
+                    var nombre = prompt("Introduzca el nombre:");
+                    var telefono = prompt("Introduzca el telefono:");
+                    var correo = prompt("Introduzca el correo:");
+                    addNewContact(listaContactos, nombre, telefono, correo);
                     break;
-                case "nuevo":
-                    agregarContacto();
-                    break;
-                case "salir":
+                case "4":
+                    console.log("Programa Finalizado");
                     salir = true;
                     break;
                 default:
