@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ejercicio 1 </title>
+</head>
+
+<body>
+    <script>
+        //1. Definir y crear objeto simple utilizando un literal
+        //2. Definir y crear un objet simple usando la palabra New
+        //3. Definir un constructor de un objeto y crear objetos del tipo construido
+
+        //1.
+        let persona1 = {
+            nombre:"Jorge",
+            apellido:"García",
+            edad:22
+        }
+
+        //2. 
+        let persona2 = new Object();
+        persona2.nombre = "Daniel";
+        persona2.apellido = "Cuesta";
+        persona2.edad = 25;
+
+        //3
+        function Persona (nom, ape, ed){
+            this.nombre = nom;
+            this.apellido = ape;
+            this.edad = ed;
+        }
+        persona3 = new Persona("Roberto", "López", 32);
+        persona1Constructor = new Persona(persona1.nombre, persona1.apellido, persona1.edad);
+        persona2Constructor = new Persona(persona2.nombre, persona2.apellido, persona3.edad);
+        console.log(persona1);
+        console.log(persona2);
+        console.log(persona3);
+        console.log(persona1Constructor);
+        console.log(persona2Constructor);
+
+        for (const key in persona1) {
+            if (Object.hasOwnProperty.call(persona1, key)) { //key es el nombre de la propiedad ('nombre', 'apellido', 'edad')
+                const element = persona1[key]; //element contiene la propiedad de persona 1 que se recorren de 1 en 1
+                console.log(key + ": "+element); 
+            }
+        }
+
+    </script>
+</body>
+
+</html>
