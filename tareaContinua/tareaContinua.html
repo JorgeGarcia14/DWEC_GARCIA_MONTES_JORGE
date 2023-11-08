@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        /*RAMA TAREACONTINUA 4 */
+        /*RAMA TAREACONTINUA 5 */
         var listaContactos = [
             persona1 = {
                 nombre: "Maxewll Wright",
@@ -35,7 +35,11 @@
         function mostrarUltimoContacto() {
             console.log("Último contacto: " + listaContactos[listaContactos.length - 1].nombre + " / " + listaContactos[listaContactos.length - 1].telefono + " / " + listaContactos[listaContactos.length - 1].correo);
         }
-
+        function mostrarTodosContactos() {
+            for (i = 0; i < listaContactos.length; i++) {
+                console.log("Contacto numero " + i + ": " + listaContactos[i].nombre + " / " + listaContactos[i].telefono + " / " + listaContactos[i].correo)
+            }
+        }
         function agregarContacto() {
             var nombrePedido = prompt("Dime el nombre");
             var telefonoPedido = prompt("Dime el telefono");
@@ -52,21 +56,31 @@
                 console.log("Falta al menos uno de los tres valores (nombre, teléfono o correo electrónico). No se agregó el contacto.");
             }
         }
+        var salir = false;
 
-        var opcion = prompt("Elige una opción: primero, ultimo o nuevo");
+        while (!salir) {
+            var opcion = prompt("¿Qué quieres hacer? primero, ultimo, todos, nuevo o salir");
 
-        switch (opcion) {
-            case "primero":
-                mostrarPrimerContacto();
-                break;
-            case "ultimo":
-                mostrarUltimoContacto();
-                break;
-            case "nuevo":
-                agregarContacto();
-                break;
-            default:
-                console.log("Opción no válida.");
+            switch (opcion) {
+                case "primero":
+                    mostrarPrimerContacto();
+                    break;
+                case "ultimo":
+                    mostrarUltimoContacto();
+                    break;
+                case "todos":
+                    mostrarTodosContactos();
+                    break;
+                case "nuevo":
+                    agregarContacto();
+                    break;
+                case "salir":
+                    salir = true;
+                    break;
+                default:
+                    console.log("Opción no válida. Inténtalo de nuevo.");
+                    break;
+            }
         }
     </script>
 </body>
