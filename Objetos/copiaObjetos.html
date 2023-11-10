@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPIA DE OBJETOS</title>
+</head>
+<body>
+    <script>
+        // COPIAR OBJETOS
+        const user = {
+            name: "Otto",
+            role: "arquero",
+            life: 99,
+            features: ["learn", "code", "paint"]
+        }
+
+        const fullUser = {
+            ...user, 
+            power:25, 
+            life:50
+        }
+
+        //
+        console.log(user.features);
+        console.log(fullUser.features);
+
+        fullUser.features[0]="program";
+
+        console.log(fullUser.features); // las propiedades primitivas se copian por valor, 
+        //pero las propiedades que son objetos se mantienen por referencia. AMBOS OBJETOS APUNTAN A LA MISMA DIRECCION DE 
+        //MEMORIA, POR ESO AL CAMBIAR EL ARRAY Y SIGUEN APUNTANDO AL MISMO LUGAR, CAMBIA EN AMBOS
+        console.log(user.features); //TAMBIEN CAMBIAR, YA QUE SE PASA POR REFERENCIA Y COMPARTEN ESPACIO EN LA MEMORIA
+
+        //STRUCTURED CLONE
+        const user2 = {
+            name: "Otto",
+            role: "arquero",
+            life: 99,
+            features: ["learn", "code", "paint"]
+        }
+
+        const fullUser2 = {
+            ...structuredClone(user), //CREA UNA COPIA, POR LO QUE SI SE CREA UN NUEVO OBJETO SEPARADOS EN LA MEMORIA 
+            //POR TANTO, SI SE HACE LO DEL CODIGO ANTERIOR, SE CAMBIA SOLO EN FULLUSER2
+            power:25, 
+            life:50
+        }
+        console.log(user2.features);
+        console.log(fullUser2.features);
+
+        fullUser2.features[0]="program";
+
+        console.log(fullUser2.features); // las propiedades primitivas se copian por valor, 
+        //pero las propiedades que son objetos se mantienen por referencia. AMBOS OBJETOS APUNTAN A LA MISMA DIRECCION DE 
+        //MEMORIA, POR ESO AL CAMBIAR EL ARRAY Y SIGUEN APUNTANDO AL MISMO LUGAR, CAMBIA EN AMBOS
+        console.log(user2.features);
+    </script>
+</body>
+</html>

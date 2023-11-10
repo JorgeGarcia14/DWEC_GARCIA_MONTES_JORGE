@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /* Object.keys(obj);
+        DEVUELVE ARRAY DE LOS INDICES DEL ITERABLE
+
+        Object.values(obj);
+        //DEVUELVE ARRAY DE LOS VALORES/CONTENIDOS DEL ITERABLE
+
+        Object.entries(obj);
+        //DEVUELVE ARRAY DE LOS PARES CLAVE:VALOR*/
+
+        //CREAR ARRAY DE ANIMALES Y PROBAR ESTOS METODOS, ARRAY ES UN OBJETO...
+
+        const miArray =["Perro", "Gato", "Pez", "Mono"];
+
+        console.log(Object.keys(miArray)); //DEVUELVE ['0','1','2','3'] QUE SON LAS CLAVES QUE TIENE EL ARRAY
+        console.log(Object.values(miArray)); //DEVUELVE ['Perro','Gato','Pez','Mono'] QUE SON LOS VALORES QUE TIENE EL ARRAY
+        console.log(Object.entries(miArray)); /*0: (2) ['0', 'Perro']
+                                                1: (2) ['1', 'Gato']
+                                                2: (2) ['2', 'Pez']
+                                                3: (2) ['3', 'Mono'] */
+        
+        console.log(Object.fromEntries(Object.entries(miArray))); //CON LOS PARES CLAVE VALOR, CONSTRUYE UN OBJETO
+
+        //FROM ENTRIES EJEMPLO MAS DIFICIL
+        //SE CREA UN ARRAY PARA KEYS Y OTRO PARA VALUES
+        const keys = ["name", "life", "power", "talk"];
+        const values = ["Otto", 99, 10, function(){return "Hola"}];
+        //SE CREA UN ARRAY DE PARES PARA GUARDAR AMBOS
+        const entries= [];
+        for(let i of Object.keys(keys)){
+            const key = keys[i];
+            const value = values[i];
+            entries.push([key,value]);
+        }
+        const user = Object.fromEntries(entries); // CREA ESTE OBJ {name: 'Otto', life: 99, power: 10, talk: ƒ}
+        console.log(user);
+    </script>
+    
+</body>
+</html>
