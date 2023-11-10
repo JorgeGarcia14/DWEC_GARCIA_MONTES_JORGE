@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        /*RAMA TAREACONTINUA 6 */
+        /* RAMA TAREACONTINUA 7 */
         var listaContactos = [
             persona1 = {
                 nombre: "Maxewll Wright",
@@ -27,11 +27,11 @@
                 correo: "libero@convallis.com"
             }
         ];
+
         function showContact(listaContactos, indice) {
             if (listaContactos instanceof Array && indice < listaContactos.length) {
                 console.log("Contacto numero " + indice + ": " + listaContactos[indice].nombre + " / " + listaContactos[indice].telefono + " / " + listaContactos[indice].correo)
-            }
-            else {
+            } else {
                 console.log("Error en los parametros");
             }
         }
@@ -41,15 +41,12 @@
                 for (i = 0; i < listaContactos.length; i++) {
                     console.log("Contacto numero " + i + ": " + listaContactos[i].nombre + " / " + listaContactos[i].telefono + " / " + listaContactos[i].correo)
                 }
-            }
-            else {
+            } else {
                 console.log("El parámetro indicado no es válido");
             }
-
         }
 
         function addNewContact(listaContactos, nombreParam, telefonoParam, correoParam) {
-
             if (nombreParam && telefonoParam && correoParam && listaContactos instanceof Array) {
                 listaContactos.push({
                     nombre: nombreParam,
@@ -58,14 +55,37 @@
                 });
                 console.log("Nuevo contacto agregado.");
             } else {
-                console.log("Falta al menos uno de los tres valores (nombre, teléfono o correo electrónico) o la lista no es valida. No se agregó el contacto.");
+                console.log("Falta al menos uno de los tres valores (nombre, teléfono o correo electrónico) o la lista no es válida. No se agregó el contacto.");
+            }
+        }
+
+        function ordenarLista(opcion) {
+            switch (opcion) {
+                case "1":
+                    listaContactos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                    console.log("Lista ordenada por nombre:");
+                    showAllContacts(listaContactos);
+                    break;
+                case "2":
+                    listaContactos.sort((a, b) => a.telefono.localeCompare(b.telefono));
+                    console.log("Lista ordenada por teléfono:");
+                    showAllContacts(listaContactos);
+                    break;
+                case "3":
+                    listaContactos.sort((a, b) => a.correo.localeCompare(b.correo));
+                    console.log("Lista ordenada por correo electrónico:");
+                    showAllContacts(listaContactos);
+                    break;
+                default:
+                    console.log("Opción no válida para ordenar.");
+                    break;
             }
         }
 
         var salir = false;
 
         while (!salir) {
-            var opcion = prompt("¿Qué quieres hacer? Mostrar uno de los contactos (pulse 1), mostrar todos los contactos (pulse 2), agregar nuevo contacto (pulse 3) o salir (pulse 4)");
+            var opcion = prompt("¿Qué quieres hacer?\n1. Mostrar uno de los contactos (pulse 1) \n2. Mostrar todos los contactos (pulse 2) \n3. Agregar nuevo contacto (pulse 3) \n4. Ordenar (pulse 4) \n5. Salir (pulse 5)");
 
             switch (opcion) {
                 case "1":
@@ -82,6 +102,10 @@
                     addNewContact(listaContactos, nombre, telefono, correo);
                     break;
                 case "4":
+                    var opcionOrden = prompt("¿Por qué propiedad quieres ordenar la lista? Seleccione una de las siguientes:\nNombre (pulse 1) \nTelefono (pulse 2) \nCorreo (pulse 3)");
+                    ordenarLista(opcionOrden);
+                    break;
+                case "5":
                     console.log("Programa Finalizado");
                     salir = true;
                     break;
