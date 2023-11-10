@@ -95,7 +95,7 @@
 
         console.log("VALUE OF DE TELEVISOR \n" + miTelevisor.valueOf());
 
-        /* 6. Crea 5 productos y guárdalos en un array. Crea las siguientes funciones (todas reciben ese array como parámetro):*/
+        /* 6. Crea 5 productos y guárdalos en un array. */
         let aspiradora = new Productos("Aspiradora", "Electrodomésticos", 5, 150);
         let auriculares = new Productos("Auriculares", "Tecnología", 15, 30);
         let camara = new Productos("Cámara", "Fotografía", 2, 400);
@@ -112,8 +112,8 @@
 
         //CON FOR NORMAL DEVUELVE LO MISMO QUE EL FOREACH
         for (let i = 0; i < arrayProductos.length; i++) {
-            
-            console.log("PRODUCTO NUMERO "+ i + "\n" + arrayProductos[i].getInfo());
+
+            console.log("PRODUCTO NUMERO " + i + "\n" + arrayProductos[i].getInfo());
         }
 
         /* CON FOREACH DEVUELVE LOS MISMO QUE CON EL FOR NORMAL
@@ -121,6 +121,67 @@
             console.log(producto.getInfo());
         });*/
 
+        /*
+        Crea las siguientes funciones (todas reciben ese array como parámetro):
+        • prodOrdenPorNombre() Devuelve un array con los productos ordenados alfabéticamente 
+        • prodOrdenPorPrecio() devuelve un array con los productos ordenados por importe 
+        • prodPrecioTotal() Devuelve el importe total del los productos del array, con 2 decimales 
+        • prodConMenosUnidades() Además del array recibe como segundo parámetro un número y devuelve un array con todos los productos que tienen menos unidades que las indicadas 
+        • prodLista() Devuelve una cadena que dice ‘Listado de productos:’ y en cada línea un guión y la información de un producto del array */
+
+        function prodOrdenPorNombre(array) {
+            return array.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            // sort ordena el array en
+            // localeCompare Compara 1 a 1 los string de nombre y los ordena alfabeticamente
+        }
+        function prodOrdenPorPrecio(array) {
+            return array.sort((a, b) => a.precio - b.precio);
+            // sort solo funciona con strings, por lo que se resta el primer precio menos el segundo y sucesivamente, para saber si es mayor o menor y en funcion del
+            // resultado, se ordenan
+        }
+        function prodPrecioTotal(array) {
+            let precioTotal = array.reduce((totalAcum, array) => totalAcum + (array.unidades * array.precio), 0);
+            //reduce recoge 4 argumentos, 
+            //totalAcum es el valor que va a ir acumulando 
+            //array es el array sobre el que se está actuando
+            //totalAcum + (array.unidades * array.precio), es la operacion que se esta realizando cada iteracion del array, para ir acumulando el precio de las unidades
+            //0 es el valor con el que empieza el totalAcum, si no se pone nada coge el primer valor en la iteracion, pero si el array está vacío, saldrá error
+            return precioTotal.toFixed(2);
+        }
+        function prodConMenosUnidades(array, cantidad) {
+            let productosConMenosUnidades = [];
+
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].unidades < cantidad) { //Se recorre el array y cada vez que las unidades del producto sean menores a la cantidad indicada, se añade al nuevo
+                    //array creado productosConMenosUnidades y finalmente se hace el return
+                    productosConMenosUnidades.push(array[i]);
+                }
+            }
+
+            return productosConMenosUnidades;
+        }
+        function prodLista(array) {
+            let lista = "Listado de productos:";
+            array.forEach(array => { //Cada iteracion del array, se añade a la cadena lista los datos de cada producto del array y finalmente se devuelve la cadena final
+                lista += `\n- ${array.nombre}, ${array.categoria}, ${array.unidades} unidades, $${array.precio}`;
+            });
+            return lista;
+        }
+
+
+        console.log("Productos ordenados por nombre:");
+        console.log(prodOrdenPorNombre(arrayProductos));
+
+        console.log("\nProductos ordenados por precio:");
+        console.log(prodOrdenPorPrecio(arrayProductos));
+
+        console.log("\nImporte total de los productos:");
+        console.log(prodPrecioTotal(arrayProductos));
+
+        console.log("\nProductos con menos de 10 unidades:");
+        console.log(prodConMenosUnidades(arrayProductos, 10));
+
+        console.log("\n" + prodLista(arrayProductos));
     </script>
 </body>
 
