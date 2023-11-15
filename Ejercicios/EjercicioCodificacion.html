@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de codificacion con pe antes de vocales </title>
+</head>
+
+<body>
+    <script>
+        /*Crea un programa que al pasarle una palabra, se codifique de tal manera que su palabra encriptada empiece por pe
+        y cada vez que encuentre una vocal ponga pe y si hay 2 o mas vocales juntas solo ponga pe despues de la vocal final.
+        Si la palabra acaba en vocal no se añade pe, la palabra solo tiene mayusculas y minusculas*/
+
+        function encriptarPalabra(palabra) {
+            // Verificar caracteres inválidos
+            if (palabra.includes(" ") || palabra.includes("á") || palabra.includes("é") || palabra.includes("í") || palabra.includes("ó") || palabra.includes("ú")) {
+                console.log("La palabra no es válida, no debe tener ni espacios ni tildes");
+                return;
+            }
+
+            let palabraEncriptada = "pe";
+         
+            for (let i = 0; i < palabra.length; i++) {
+                palabraEncriptada += palabra[i];
+
+                if ("aeiouAEIOU".includes(palabra[i]) && !"aeiouAEIOU".includes(palabra[i+1])) {
+                    palabraEncriptada += "pe";
+                }
+                
+            }
+
+            if (palabraEncriptada.endsWith("pe")) {
+                palabraEncriptada = palabraEncriptada.slice(0, -2);
+            }
+
+            return palabraEncriptada;
+        }
+
+        console.log(encriptarPalabra("ola"));
+        console.log(encriptarPalabra("hola"));
+        console.log(encriptarPalabra("jorge"));
+        console.log(encriptarPalabra("Autenticación"));
+        console.log(encriptarPalabra("Autenticacion"));
+
+        if (encriptarPalabra("Autenticacion") === "peAupetepentipecapeciopen") {
+            console.log("Bien");
+        } else {
+            console.log("Mal");
+        }
+
+
+
+    </script>
+</body>
+
+</html>

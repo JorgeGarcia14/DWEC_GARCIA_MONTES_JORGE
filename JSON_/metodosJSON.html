@@ -10,10 +10,10 @@
         
         //METODOS JSON
 
-        JSON.parse(str);
-        JSON.stringify(obj);
-        JSON.stringify(obj,pers);
-
+        JSON.parse(str); // Convierte el texto: str a un objeto y lo devuelve
+        JSON.stringify(obj); // Convierte un objeto JS a su representacion JSON y la devuelve
+        JSON.stringify(obj,pers); // Como el anterior, pero filtra y mantiene solo las propiedades del array props
+        JSON.stringify(obj,props,spaces); // Como el anterior, pero indenta JSON a number y spaces
     </script>
 </body>
 </html>
