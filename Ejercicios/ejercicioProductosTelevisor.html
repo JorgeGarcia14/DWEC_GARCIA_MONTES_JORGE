@@ -163,7 +163,7 @@
         function prodLista(array) {
             let lista = "Listado de productos:";
             array.forEach(array => { //Cada iteracion del array, se añade a la cadena lista los datos de cada producto del array y finalmente se devuelve la cadena final
-                lista += `\n- ${array.nombre}, ${array.categoria}, ${array.unidades} unidades, $${array.precio}`;
+                lista += "\n-"  + array.toString ; //${array.nombre}, ${array.categoria}, ${array.unidades} unidades, $${array.precio}
             });
             return lista;
         }
