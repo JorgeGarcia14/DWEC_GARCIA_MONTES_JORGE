@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo2</title>
+    <script>
+        
+        var primeraVariable="Declarada fuera del bloque"; //Se declara antes de que empiece la función
+        function miFuncion(){
+           var primeraVariable="Declarada dentro de la función con el mismo nombre"; //Se declara dentro de la función con el mismo nombre y toma el valor nuevo solo dentro del bloque
+           console.log(primeraVariable); //Se muestra el mensaje que está dentro de la función
+           return 0; //se llama igual pero solo existe dentro de la funcion
+        }
+       console.log(primeraVariable); //Muestra el mensaje del principio
+       
+   </script>
+</head>
+<body>
+    <script>
+        miFuncion();
+    </script>
+</body>
+</html>

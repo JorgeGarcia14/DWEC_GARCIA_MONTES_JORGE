@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 1</title>
+</head>
+<body>
+    <script>
+        let x=1;
+        let y=++x; // ++x Primero incrementa y luego valua
+        let z=y++ + x; //y++ Primero evalua y luego incrementa
+        console.log(x);
+        console.log(y);
+        console.log(z);
+        x+=y; // Es lo mismo que x=x+y;
+        // Si + se usa con strings, estas se concatenan, si se suma un numero y un string, también se concatenan
+        // = se usa para asignación
+        // == se usa para comparar el valor
+        // === se usa para comparar valor y tipo
+        // && AND
+        // || OR
+        let asignado = 2304 || "hola"; // Si no está definida, se asigna valor por defecto (el segundo)
+        
+        // (Condicion) ? Resultado_true : Resultado_false OPERADOR TERNARIO, para hacer un if-else-then en una sola linea
+        let edad=20;
+        let votante = (edad>18) ? "Puede votar" : "No puede votar";
+        console.log(votante);
+        
+        // Se ejecuta de derecha a izquierda
+        let year=2050;
+        let newYear=year=2051;
+        /* ES LO MISMO QUE
+        let year =2050;
+        year=2051;
+        let neeYear;
+        */
+       
+        // FUNCIONES DE CONVERSION
+        // String(LOQUEQUIERACONVERTIR);
+        // Number(LOQUEQUIERACONVERTIR);
+        //parseInt() transforma de cadena a entero
+        //parseFloat() convierte de cadena a decimal
+        /*toDateString() convierte variable tipo fecha a string.
+        let fecha = new Date();
+        let cadena = fecha.toDateString() o fecha.toString();*/
+
+        //CONVERSIONES IMPLICITAS
+        //Cuando compara cadena y numero, JS trata de convertir la cadena en numero antes de comparar
+        //Cuando se suma cadena y numero, lo transforma en número la cadena, y sino concatena
+        //Cuando se resta cadena y numero, lo transforma todo a number ya que no tiene esa operacion con strings
+        
+
+        //COERCION DE JS
+
+        //Ejemplo1
+        const STR1=42+"1";
+        console.log(STR1); //421
+        console.log(typeof STR1); //string
+
+        //Ejemplo2
+        const STR2=42 -"1";
+        console.log(STR2); //41
+        console.log(typeof STR2); //number
+
+        //Ejemplo3
+        const VALOR1="5";
+        const VALOR2=9;
+        const RESULTADO=VALOR1+VALOR2;
+        console.log(RESULTADO); //58
+        console.log(typeof RESULTADO); //string
+    </script>
+</body>
+</html>
