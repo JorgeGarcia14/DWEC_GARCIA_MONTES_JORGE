@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo con Window</title>
+</head>
+
+<body>
+    
+    <script>
+        function crearVentana() {
+            //miVentana = window.open("https://www.marca.com/");
+            miVentana = window.open("", "", "width = 500,height=200"); //Crea una ventana vacia y sin titulo
+            miVentana.document.write("<h1>MI VENTANA </h1>"); //Escribe en la nueva ventana MI VENTANA como H1
+        }
+        function cerrarVentana() {
+            miVentana.close();
+        }
+        function redimensionarVentanaAumentandoTamaño() {
+            miVentana.resizeBy(10, 10); // Numero de pixeles respecto a su parametro
+        }
+        function redimensionarVentanaTamañoFijo() {
+            miVentana.resizeTo(1000, 400); // Numero de pixeles que quiero que tenga la ventana
+        }
+        function desplazarVentana(){
+            miVentana.moveBy(10,10); // Desplaza x e y pixeles la ventana
+        }
+        function moverVentana(){
+            miVentana.moveTo(500,250); // Mueve a los pixeles de la pantalla que queramos la ventana
+        }
+        function enfocarVentana(){
+            miVentana.focus(); //Llevar foco a la ventana, para que se vea por encima de la principal
+        }
+        function imprimirVentana(){
+            miVentana.print(); //Para que salga pagina para imprimir la pantalla (Impresora)
+        }
+
+    </script>
+    <button onclick="crearVentana()"> Pulsa para abrir ventana </button>
+    <br>
+    <br>
+    <button onclick="cerrarVentana()"> Pulsa para cerrar ventana </button>
+    <br>
+    <br>
+    <button onclick="redimensionarVentanaAumentandoTamaño()"> Pulsa para agrandar la ventana </button>
+    <br>
+    <br>
+    <button onclick="redimensionarVentanaTamañoFijo()"> Pulsa para agrandar la ventana a un tamaño fijo(1000 en x ,400 en y)</button>
+    <br>
+    <br>
+    <button onclick="desplazarVentana()"> Desplazar ventana (10 en x ,10 en y) pixeles</button>
+    <br>
+    <br>
+    <button onclick="moverVentana()"> Mueve la ventana a la posicion (500 en x ,250 en y) </button>
+    <br>
+    <br>
+    <button onclick="enfocarVentana()"> Enfocar ventana para que esté delante  </button>
+    <br>
+    <br>
+    <button onclick="imprimirVentana()"> Pulsa para imprimir ventana </button>
+</body>
+
+</html>

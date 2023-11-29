@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Agrupar elementos en un array
+        let grupo1 = [1, 2, 3];
+        let grupo2 = [4, 5, 6];
+
+        let arregloAgrupado = [grupo1, grupo2];
+
+        console.log(arregloAgrupado);
+        // Output: [[1, 2, 3], [4, 5, 6]]
+
+        //SPREAD
+        //Hay algunos metodos de arrays que cambian el original y alguna vez no queremos que ocurra, por tanto necesitamos crear una copia, pero
+        //que apunten a una zona de memoria diferente, para que cuando se cambie uno no se cambie el otro, por tanto
+        
+        let array2 = [1, 2, 3, 4, 5];
+        let arrayAux = [...array2]; // Crear una copia del array usando SPREAD, es una copia de array2, pero apuntando a zonas de memoria
+        //diferentes, por tanto, al cambiar cualquiera de los 2, son independientes y no cambiarian ambos
+
+        alert(arrayAux.reverse()); // Muestra el array auxiliar invertido [5,4,3,2,1]
+
+        alert(array2); // Muestra el original sin cambios [1,2,3,4,5]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo con Window</title>
+</head>
+<body>  
+    <p id="ventana"></p> 
+    <script>
+        window.name= "mi ventana";
+        let texto ="";
+        texto+="Nombre de la ventana (window.name): " + window.name + "<br>";
+        texto+="</br>Ancho de la ventana externo (pantalla + scroll + barra de navegacion) (window.outerWidth): " + window.outerWidth + "<br>";
+        texto+="</br>Alto de la ventana externo (pantalla + scroll + barra de navegacion) (window.outerHeight): " + window.outerHeight + "<br>";
+        texto+="</br>Ancho de la ventana interno  (window.innerHeight): " + window.innerWidth + "<br>";
+        texto+="</br>Alto de la ventana Interno (window.innerHeight): " + window.innerHeight + "<br>";
+        texto+="</br>Distancia del Scroll hasta el borde en horizontal (window.pageXOffset): " + window.pageXOffset + "<br>";
+        texto+="</br>Distancia del Scroll hasta el borde en vertical (window.pageYOffset): " + window.pageYOffset + "<br>";
+        texto+="</br>Distancia de la pantalla hasta la ventana desde la izquierda (window.screenX): " + window.screenX + "<br>";
+        texto+="</br>Distancia de la pantalla hasta la ventana desde arriba (window.screenY): " + window.screenY;
+
+        document.getElementById("ventana").innerHTML= texto;
+    </script>
+    
+</body>
+</html>
