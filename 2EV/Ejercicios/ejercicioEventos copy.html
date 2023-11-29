@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="cuerpo">
+    <!-- Pagina web con un boton que diga pulsame.
+    1. Si se pulsa la pagina cambia de color ALEATORIO
+    2. Si se pulsa cualquier otra parte vuelve a blanco
+    3.c-->
+
+    <button id="boton" style>PULSAME</button>
+
+    <script>
+        document.getElementById("boton").addEventListener("click", function (event) {
+            // Detener la propagación del clic para que no llegue al cuerpo
+            event.stopPropagation();
+
+            var colorAleatorio = generarColorAleatorio();
+            document.getElementById("cuerpo").style.background = colorAleatorio;
+        }, false);
+
+        // Agrega un event listener al cuerpo para cambiar el fondo a blanco
+        document.body.addEventListener("click", function () {
+            document.getElementById("cuerpo").style.background = "white";
+        });
+
+        function generarColorAleatorio() {
+            var rojo = Math.floor(Math.random() * 256);
+            var verde = Math.floor(Math.random() * 256);
+            var azul = Math.floor(Math.random() * 256);
+
+            var color = "rgb(" + rojo + "," + verde + "," + azul + ")";
+            return color;
+        }
+    </script>
+</body>
+
+</html>
