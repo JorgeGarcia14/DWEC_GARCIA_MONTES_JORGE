@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <button id="boton">Click izquierdo para aumentar contador, derecho para disminuir</button>
     <br>
-   
+
     <p id="contador">0</p>
     <script>
         var contador = 0;
@@ -17,7 +19,7 @@
             if (e.button === 0) {
                 contador++;
             } else if (e.button === 2) {
-                document.addEventListener('contextmenu', function (event) {event.preventDefault();});
+                document.addEventListener('contextmenu', function (event) { event.preventDefault(); });
                 contador--;
             }
 
@@ -25,4 +27,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Numeros</title>
+</head>
+<body>
+
+    <p id="resultadoDoble"></p>
+    <p id="resultadoPares"></p>
+    <p id="resultadoTotal"></p>
+    <script>
+        const numeros = [1, 2, 3, 4, 5];
+
+        document.getElementById("resultadoPares").innerHTML = "Numeros pares con filter: " +  numeros.filter(pares);
+
+        function pares(numero){
+           return numero%2==0; 
+        }
+
+        document.getElementById("resultadoDoble").innerHTML = "Numeros multiplicados por 2 con map: " + numeros.map(doble);
+
+        function doble (numero){
+            return numero*2;
+        }
+
+        document.getElementById("resultadoTotal").innerHTML = "Suma de todos los numeros: " + numeros.reduce(sumaTodos,0);
+
+        function sumaTodos (total,numero){
+            return total + numero;
+        }
+    </script>
+</body>
+</html>
