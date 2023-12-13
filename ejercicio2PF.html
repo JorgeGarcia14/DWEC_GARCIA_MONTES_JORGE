@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Programacion Funcional Apartado 1 y 2</title>
+</head>
+
+<body>
+    <p> USUARIOS MAYORES DE 18 AÑOS </p>
+    <p id = "edadesMayor"></p>
+    <p> PROMEDIO DE EDADES DE LOS USUARIOS MAYORES DE EDAD </p>
+    <p id = "promedioEdades"></p>
+    <script>
+        //APARTADO 1 (FILTRAR MAYORES DE 18 AÑOS)
+        const usuarios = [
+            { id: 1, nombre: 'Juan', edad: 25 },
+            { id: 2, nombre: 'María', edad: 30 },
+            { id: 3, nombre: 'Pedro', edad: 20 },
+            { id: 4, nombre: 'Ana', edad: 35 },
+            { id: 5, nombre: 'Luisa', edad: 22 },
+            { id: 6, nombre: 'Alberto', edad: 19 },
+        ];
+
+        const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 18); // Se usa filter para solamente llenar el array de usuariosMayores de los
+        //que sean mayores de 18
+
+        //Se crea mensaje para sacar en string lo usuarios mayores de 18 años
+        const usuariosMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join(', ');
+
+
+        document.getElementById("edadesMayor").innerHTML = usuariosMayoresString;
+
+        //APARTADO 2 (CALCULAR PROMEDIO DE LOS USUARIOS FILTRADOS)
+
+        const promedioFiltrados = usuariosMayores.reduce((total, usuario) => total + usuario.edad, 0) / usuariosMayores.length;
+        
+
+        document.getElementById("promedioEdades").innerHTML = promedioFiltrados.toFixed(2) + " años es el promedio de los mayores de edad";
+
+    </script>
+</body>
+
+</html>

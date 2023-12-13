@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Programacion Funcional Apartado 1</title>
+</head>
+
+<body>
+    <p> PERSONAS DE 25 AÑOS O MAYORES: </p>
+    <p id="edadesMayor"></p>
+    <script>
+        const usuarios = [
+            { id: 1, nombre: 'Juan', edad: 25 },
+            { id: 2, nombre: 'María', edad: 30 },
+            { id: 3, nombre: 'Pedro', edad: 20 },
+            { id: 4, nombre: 'Ana', edad: 35 },
+        ];
+
+        const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 25); // Se usa filter para solamente llenar el array de usuariosMayores de los
+        //que sean mayores de 25
+
+        //Se crea mensaje para sacar en string lo usuarios mayores de 25 años
+        const edadesMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join(', ');
+
+
+        document.getElementById("edadesMayor").innerHTML = edadesMayoresString;
+    </script>
+
+
+
+    </script>
+</body>
+
+</html>
