@@ -22,10 +22,10 @@
         //que sean mayores de 25
 
         //Se crea mensaje para sacar en string lo usuarios mayores de 25 años
-        const edadesMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join(', ');
+        const usuariosMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join(', ');
 
 
-        document.getElementById("edadesMayor").innerHTML = edadesMayoresString;
+        document.getElementById("edadesMayor").innerHTML = usuariosMayoresString;
     </script>
 
 
