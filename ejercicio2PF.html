@@ -8,11 +8,13 @@
 </head>
 
 <body>
-    <p> USUARIO CON LA MENOR EDAD </p>
-    <p id="usuarioMenor"></p>
+    <p> USUARIOS MAYORES DE 18 AÑOS </p>
+    <p id="usuariosMayores"></p>
+    <p> PROMEDIO DE LAS EDADES FILTRADAS </p>
+    <p id="promedioEdades"></p>
 
     <script>
-         //RAMA 1
+         //APARTADO 1 FILTRAR POR MAYORES DE 18 AÑOS
         const usuarios = [
             { id: 1, nombre: 'Juan', edad: 25 },
             { id: 2, nombre: 'María', edad: 30 },
@@ -25,20 +27,15 @@
         const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 18); // Se usa filter para solamente llenar el array de usuariosMayores de los
         //que sean mayores de 18
 
-        // APARTADO 3: Encontrar al usuario más joven entre los filtrados.
-        const usuarioMasJoven = usuariosMayores.reduce((usuarioJoven, usuarioActual) => {
-            return usuarioActual.edad < usuarioJoven.edad ? usuarioActual : usuarioJoven; // Ternaria CONDICION ? TRUE : FALSE  
-        }, usuariosMayores[0]);
+        usuariosMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join( ", ");
 
-        const usuarioMasJovenString = `El usuario mas joven es: ${usuarioMasJoven.nombre} (${usuarioMasJoven.edad} años)`;
+        document.getElementById("usuariosMayores").innerHTML = usuariosMayoresString;
 
+        //APARTADO 2 CALCULAR EL PROMEDIO DE LAS EDADES FILTRADAS
 
-        document.getElementById("usuarioMenor").innerHTML = usuarioMasJovenString;
+        const promedioFiltrados = usuariosMayores.reduce((total, usuario) => total + usuario.edad, 0) / usuariosMayores.length;
 
-
-
-        //APARTADO 4 Obtener una lista de nombres de usuarios que empiezan con la letra 'A'.
-
+        document.getElementById("promedioEdades").innerHTML = promedioFiltrados.toFixed(2);
     </script>
 </body>
 
