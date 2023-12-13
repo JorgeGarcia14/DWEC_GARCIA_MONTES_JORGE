@@ -8,9 +8,14 @@
 </head>
 
 <body>
-    <p> PERSONAS DE 25 AÑOS O MAYORES: </p>
-    <p id="edadesMayor"></p>
+    <p> EDADES MULTIPLICADAS POR 2 </p>
+    <p id="edadesDoble"></p>
+    <p> SUMA DE LAS EDADES MULTIPLICADAS POR 2</p>
+    <p id="sumaEdades"></p>
     <script>
+
+        //APARTADO 2 Duplicar la edad de esos usuarios filtrados.
+
         const usuarios = [
             { id: 1, nombre: 'Juan', edad: 25 },
             { id: 2, nombre: 'María', edad: 30 },
@@ -21,11 +26,16 @@
         const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 25); // Se usa filter para solamente llenar el array de usuariosMayores de los
         //que sean mayores de 25
 
-        //Se crea mensaje para sacar en string lo usuarios mayores de 25 años
-        const edadesMayoresString = usuariosMayores.map(usuario => `${usuario.nombre} (${usuario.edad} años)`).join(', ');
+        document.getElementById("edadesDoble").innerHTML = "Edades multiplicadadas por 2: " + usuariosMayores.map(doble);
 
+        function doble(usuario) {
+            return usuario.edad * 2;
+        }
 
-        document.getElementById("edadesMayor").innerHTML = edadesMayoresString;
+        // APARTADO 3: Obtener la suma total de las edades duplicadas.
+        var sumaEdadesDuplicadas = usuariosMayores.map(doble).reduce(function (total, edad) {return total + edad;}, 0);
+
+        document.getElementById("sumaEdades").innerHTML = "Suma de las edades multiplicadas: " + sumaEdadesDuplicadas;
     </script>
 
 
