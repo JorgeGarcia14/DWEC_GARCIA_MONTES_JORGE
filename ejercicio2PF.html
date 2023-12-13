@@ -11,8 +11,10 @@
     <p> USUARIO CON LA MENOR EDAD </p>
     <p id="usuarioMenor"></p>
 
-    <script>
+    <p> NOMBRES DE USUARIOS QUE EMPIEZAN CON LA LETRA 'A' </p>
+    <p id="usuariosConA"></p>
 
+    <script>
         const usuarios = [
             { id: 1, nombre: 'Juan', edad: 25 },
             { id: 2, nombre: 'María', edad: 30 },
@@ -22,24 +24,24 @@
             { id: 6, nombre: 'Alberto', edad: 19 },
         ];
 
-        const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 18); // Se usa filter para solamente llenar el array de usuariosMayores de los
-        //que sean mayores de 18
+        const usuariosMayores = usuarios.filter(usuario => usuario.edad >= 18);
 
         // APARTADO 3: Encontrar al usuario más joven entre los filtrados.
         const usuarioMasJoven = usuariosMayores.reduce((usuarioJoven, usuarioActual) => {
-            return usuarioActual.edad < usuarioJoven.edad ? usuarioActual : usuarioJoven; // Ternaria CONDICION ? TRUE : FALSE  
+            return usuarioActual.edad < usuarioJoven.edad ? usuarioActual : usuarioJoven;
         }, usuariosMayores[0]);
 
-        const usuarioMasJovenString = `El usuario mas joven es: ${usuarioMasJoven.nombre} (${usuarioMasJoven.edad} años)`;
-
-
+        const usuarioMasJovenString = `El usuario más joven es: ${usuarioMasJoven.nombre} (${usuarioMasJoven.edad} años)`;
         document.getElementById("usuarioMenor").innerHTML = usuarioMasJovenString;
 
+        // APARTADO 4: Obtener una lista de nombres de usuarios que empiezan con la letra 'A'.
+        const usuariosConA = usuarios.filter(usuario => usuario.nombre.charAt(0).toUpperCase() === 'A');
+        
+        const usuariosConAString = usuariosConA.map(usuario => usuario.nombre).join(', ');
 
-
-        //APARTADO 4 Obtener una lista de nombres de usuarios que empiezan con la letra 'A'.
-
+        document.getElementById("usuariosConA").innerHTML = `Usuarios que empiezan con 'A': ${usuariosConAString}`;
     </script>
+
 </body>
 
 </html>
