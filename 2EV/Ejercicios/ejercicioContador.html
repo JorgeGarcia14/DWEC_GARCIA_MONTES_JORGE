@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="boton" oncontextmenu="return false;">Click izquierdo para aumentar contador, derecho para disminuir</button>
+    <button id="boton">Click izquierdo para aumentar contador, derecho para disminuir</button>
     <br>
    
     <p id="contador">0</p>
@@ -17,6 +17,7 @@
             if (e.button === 0) {
                 contador++;
             } else if (e.button === 2) {
+                document.addEventListener('contextmenu', function (event) {event.preventDefault();});
                 contador--;
             }
 
