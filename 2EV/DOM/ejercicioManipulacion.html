@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - Creacion y modificacion de elementos </title>
+    <style>
+        .miClase {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <p id="parrafo1"> Primer parrafo </p>
+        <p id="parrafo2">Segundo parrafo </p>
+        <p id="parrafo3" class="miClase"> Tercer parrafo</p>
+    </div>
+        
+    <br>
+
+    <button id="cambiarTextos"> Cambiar texto de parrafos </button>
+    <button id="cambiarClases"> Cambiar clases de parrafos </button>
+    <button id="quitarClases"> Quitar clases de todos los parrafos </button>
+    
+    <script>
+        //PARA QUE TODO ESTE CARGADO Y NO EJECUTE EL SCRIPT ANTES 2 FORMAS:
+        
+        //windows.onload=inicio; 
+        window.addEventListener("load", inicio);
+        
+        // FUNCION INICIO QUE ASIGNE LAS FUNCIONES A LOS BOTONES
+
+        function inicio (){
+            document.getElementById("cambiarTextos").addEventListener("click", cambiarTextos);
+            document.getElementById("cambiarClases").addEventListener("click", cambiarClases);
+            document.getElementById("quitarClases").addEventListener("click", quitarClases);
+        }
+
+        function cambiarTextos(){
+            // SELECCIONA UN UNICO ELEMENTO POR SU ID
+            document.getElementById("parrafo1").innerHTML = "Primer parrafo cambiado";
+
+            // SELECCIONA TODOS LOS ELEMENTOS SEGUN LA ETIQUETA EN FORMATO ARRAY Y SE ESPECIFICA EN EL INDICE CUAL QUIERO SI ES QUE QUIERO ALGUNO CONCRETO
+            document.getElementsByTagName("p")[1].innerHTML = "Segundo parrafo cambiado";
+
+            // SELECCIONA TODOS LOS ELEMENTOS SEGUN LA CLASE EN FORMATO ARRAY Y SE ESPECIFICA EN EL INDICE CUAL QUIERO SI ES QUE QUIERO ALGUNO CONCRETO
+            document.getElementsByClassName("miClase")[0].innerHTML = "Tercer parrafo cambiado";
+
+            //OTRAS FORMAS DE HACERLO
+            /*SELECCIONAR UN ELEMENTO DENTRO DE OTRO
+            var principal = document.getElementById("main");
+            var parrafo1 = principa.getElementById("parrafo1");*/
+
+            /*SELECCIONAR EL PRIMER ELEMENTO CON UN SELECTOR CSS
+            document.querySelector("p.miClase");
+            document.querySelector("p.miClase")[0];*/
+        }
+
+        function cambiarClases (){
+            // 2 FORMAS DE HACERLO
+            document.getElementById("parrafo1").setAttribute("class", "miClase"); //AL ATRIBUTO CLASS, SE LE ASIGNA miClase, QUE EN ESTE CASO ES COLOR RED
+            document.getElementById("parrafo2").className = "miClase"; //SE LE ASIGNA A PARRAFO 2 EL CLASS NAME miClase
+
+        }
+
+        function quitarClases(){
+            
+            document.getElementById("parrafo1").setAttribute("class","");
+            document.getElementById("parrafo2").className="";
+
+            /* SI QUIERO QUITAR LA CLASE DE TODOS LOS ELEMENTOS, SE HARIA CON UN BUCLE FOR EN VEZ DE IR 1 POR 1
+            for (var i =0; i < document.getElementsByTagName("p").length; i++){
+                document.getElementsByTagName("p")[i].className="";
+            }*/
+        }
+    </script>
+
+</body>
+</html>
