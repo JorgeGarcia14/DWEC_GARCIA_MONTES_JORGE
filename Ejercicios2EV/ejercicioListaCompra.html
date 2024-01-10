@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>The Element Object</h1>
+    <h2>The appendChild() Method</h2>
+
+    <ul id="listaCompra">
+        <li>Azúcar</li>
+        <li>Cerveza</li>
+        <li>Pan</li>
+        <li>Patatas</li>
+    </ul>
+    <textarea id="texto"></textarea>
+
+    <button onclick="añadirCompra()">Añadir</button>
+
+    <script>
+        function añadirCompra() {
+
+            var padre = document.getElementById("listaCompra");
+            var array = new Array();
+            var hijo = padre.firstChild;
+            // Se recorren los hijos metiendolos en un array
+
+            while (hijo) {
+                array.push(hijo);
+                hijo = hijo.nextElementSibling;
+            }
+
+            // Se crea un nuevo elemento li
+            var nuevoProductoCompra = document.createElement("li");
+            // Se añade el contenido del textarea como un nodo de texto
+            nuevoProductoCompra.appendChild(document.createTextNode(document.getElementById("texto").value));
+
+            // Se añade el nuevo elemento al array
+            array.push(nuevoProductoCompra);
+
+            // Se ordena el array alfabéticamente
+            array.sort(function (a, b) {
+                return a.textContent.localeCompare(b.textContent);
+            });
+
+            // Se borran todos los elementos de la lista original
+            while (hijo) {
+                padre.removeChild(padre.firstChild);
+            }
+
+            // Se añaden los elementos del array ordenado a la lista
+            array.forEach(function (elemento) {
+                padre.appendChild(elemento);
+            });
+
+
+        }
+    </script>
+
+</body>
+
+</html>
