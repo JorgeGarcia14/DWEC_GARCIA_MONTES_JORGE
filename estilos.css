@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea en la parte superior */
+    
+    
+  }
+  
+  .titulo {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-family:Copperplate, Copperplate Gothic Light, fantasy;
+  }
+  
+  .contenedor {
+    text-align: center;
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 20px auto; /* Alinea el tablero al centro */
+  }
+  
+  td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #8a8989;
+    text-align: center;
+    background-color: #cdcdcd; /* Color grisaceo */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.468); /* Añadir sombra */
+    transition: background-color 0.15s ease
+  }
+  td:hover {
+    background-color: #8787877e; /* Cambiar el color al pasar el ratón */
+    cursor:pointer;
+}
+  select {
+    margin: 0 10px; /* Añade espacio alrededor del select */
+  }
+  
+  

@@ -7,17 +7,21 @@
   <title>Buscaminas</title>
 </head>
 <body>
-  <h1>Buscaminas</h1>
-  <div id="options">
-    <label for="size">Tamaño del tablero:</label>
-    <select id="size">
+
+  <div class="contenedor">
+    <h1 class="titulo">Buscaminas</h1>
+    <label for="tamanoTablero">Selecciona el tamaño del tablero:</label>
+    <select id="tamanoTablero">
       <option value="8">8x8</option>
-      <option value="10">10x10</option>
       <option value="12">12x12</option>
+      <option value="16">16x16</option>
     </select>
-    <button onclick="comenzarPartida()">Nuevo Juego</button>
+    <button onclick="iniciarJuego()">Iniciar Juego</button>
   </div>
-  <div id="board"></div>
+
+  <div id="tableroJuego"></div>
+
   <script src="buscaminas.js"></script>
 </body>
 </html>
+
