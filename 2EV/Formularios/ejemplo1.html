@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <form action="" method="">
+        <label for=""> Nombre: </label>
+        <input type="text" size="42" maxlength="30">
+        <br>
+        <br>
+        <label for=""> Apellidos: </label>
+        <input type="text" size="40" maxlength="80">
+        <br>
+        <br>
+        <label for=""> DNI </label>
+        <input type="text" size="10" maxlength="9">
+        <br>
+        <br>
+        <label for="Sexo"> Sexo: </label>
+        <br>
+        <input type="radio" name="sexo" value="hombre" checked> Hombre
+        <br>
+        <input type="radio" name="sexo" value="mujer"> Mujer
+        <br>
+        <br>
+        <label for="">Incluir mi foto:</label>
+        <input type="file" name="foto">
+        <br>
+        <br>
+        <label for="">Enviar publicidad</label>
+        <input type="checkbox" checked>
+        <br>
+        <br>
+        <select id="aprobar">
+            <option value="10">Saco 10 en DWEC</option>
+            <option value="9">Saco 9 en DWEC</option>
+            <option value="8">Saco 8 en DWEC</option>
+            <option value="añadir"> Añadir... </option>
+        </select>
+        <button id="okSelect" type="button" name="añadir">Seleccionar</button>
+        <br>
+        <br>
+        <input id="ok" type="submit" name="enviar" value="Guardar cambios">
+        <input type="reset" name="borrar" value="Borrar los datos introducidos">
+    </form>
+    <script>
+        var elemento; // Declarar elemento a nivel global
+        var sel; // Declarar sel a nivel global
+
+        window.addEventListener("load", inicio);
+
+        function inicio() {
+            document.getElementById("ok").addEventListener("click", aprobar);
+            document.getElementById("okSelect").addEventListener("click", añadir);
+
+            // Obtener elemento y sel al cargar la página
+            elemento = document.getElementById("aprobar");
+            sel = elemento.selectedIndex;
+        }
+
+        function aprobar() {
+            elemento =document.getElementById("aprobar");
+            for (i = 0; i < elemento.options.length; i++) {
+                alert("Valor de la opcion " + elemento.options[i].value);
+            }
+            alert("El valor de la opcion seleccionada es " + elemento.options[sel].value + " y el texto asociado es " + elemento.options[sel].text);
+            
+            elemento.selectedIndex = 0;
+        }
+
+        function añadir() {
+            var select=document.getElementById("aprobar");
+            if (select.value === "añadir") {
+                var opcionNueva = document.createElement("option");
+                opcionNueva.value = "7";
+                opcionNueva.text = prompt("Escribe lo que qiueras añadir");
+                select.insertBefore(opcionNueva, select.children[select.children.length-1]);
+            }
+        }
+    </script>
+</body>
+
+</html>
