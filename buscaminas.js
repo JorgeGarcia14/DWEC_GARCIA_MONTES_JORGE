@@ -1,3 +1,15 @@
+window.addEventListener("load", inicio);
+
+function inicio(){
+  var botonInicio = document.getElementById("bt_inicio");
+  botonInicio.addEventListener("click", iniciarJuego);
+}
+
+function crearTablero(){
+  //DUDA PARA JUANJO, QUE LAS BOMBAS SE CREEN AL INICIAR JUEGO O QUE SE DISTRIBUYAN AL DAR EL PRIMER CLICK?
+}
+
+
 function iniciarJuego() {
     // Obtener el tamaño seleccionado
     var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
