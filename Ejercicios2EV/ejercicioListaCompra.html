@@ -5,17 +5,19 @@
     <h1>The Element Object</h1>
     <h2>The appendChild() Method</h2>
 
-    <ul id="listaCompra">
-        <li>Azúcar</li>
-        <li>Cerveza</li>
-        <li>Pan</li>
-        <li>Patatas</li>
-    </ul>
+    <ul id="listaCompra"></ul>
     <textarea id="texto"></textarea>
-
-    <button onclick="añadirCompra()">Añadir</button>
+    <br>
+    <button id="botonAñadir"> Añadir</button>
 
     <script>
+        window.addEventListener("load", inicio);
+
+        function inicio() {
+            var botonAgregar = document.getElementById("botonAñadir");
+            botonAgregar.addEventListener("click", añadirCompra);
+        }
+
         function añadirCompra() {
 
             var padre = document.getElementById("listaCompra");
@@ -30,15 +32,19 @@
 
             // Se crea un nuevo elemento li
             var nuevoProductoCompra = document.createElement("li");
+
+            // Al crear un nuevo elemento de la lista, se le asigna la funcion borrarCompra al clicar sobre el
+            nuevoProductoCompra.addEventListener("click", borrarCompra);
+
             // Se añade el contenido del textarea como un nodo de texto
             nuevoProductoCompra.appendChild(document.createTextNode(document.getElementById("texto").value));
-
+            
             // Se añade el nuevo elemento al array
             array.push(nuevoProductoCompra);
 
             // Se ordena el array alfabéticamente
             array.sort(function (a, b) {
-                return a.textContent.localeCompare(b.textContent);
+                return a.id.localeCompare(b.id);
             });
 
             // Se borran todos los elementos de la lista original
@@ -50,9 +56,20 @@
             array.forEach(function (elemento) {
                 padre.appendChild(elemento);
             });
-
+            
+            // Para dejar el textarea vacio despues de pulsar
+            document.getElementById("texto").value = "";
 
         }
+
+        function borrarCompra() {
+            var padre = document.getElementById("listaCompra"); // Se le asigna a una variable el elemento padre
+            var hijo = this; // "this" hace referencia al elemento que ha activado el evento (en este caso, el <li>)
+
+            // Elimina el elemento de la lista
+            padre.removeChild(hijo);
+        }
+
     </script>
 
 </body>
