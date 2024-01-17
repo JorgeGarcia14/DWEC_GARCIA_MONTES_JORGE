@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Máquina apagada</h1>
+    <form action="#" id="miForm">
+        <input type="submit" id="enviar" value="Encender máquina">
+    </form>
+    <script>
+        window.addEventListener("load", inicio);
+        function inicio(){
+            //PARA QUE EL EVENTO SEA SUBMIT Y NO CLICK, EL ELEMENTO QUE TENEMOS QUE COGER ES EL FORMULARIO
+            //document.getElementById("miForm").addEventListener("submit", cambioTexto);
+            document.getElementById("enviar").addEventListener("click", cambioTexto);
+        }
+
+        function cambioTexto(){
+            var titulo = document.querySelector("h1"); // getElementsByTagName trabaja con ARRAYS, hay que poner el indice aunque tenga 1 elemento
+            var boton = document.getElementById("enviar");
+
+            if (titulo.textContent === "Máquina apagada") {
+                titulo.textContent = "Máquina encendida";
+                boton.value = "Apagar máquina";
+            } else {
+                titulo.textContent = "Máquina apagada";
+                boton.value = "Encender máquina";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <form action="mailto:danicu988@gmail.com" id="miForm">
+        <label for=""> Nombre: </label>
+        <input type="text" size="42" maxlength="30" id="nombre" placeholder="Escribe tu nombre">
+        <br>
+        <br>
+        <label for=""> Apellidos: </label>
+        <input type="text" size="40" maxlength="80" id="apellidos" placeholder="Escribe tu apellido">
+        <br>
+        <br>
+        <label for=""> DNI </label>
+        <input type="text" size="10" maxlength="9" id="dni" placeholder="Escribe tu DNI">
+        <br>
+        <br>
+        <label for="Sexo"> Sexo: </label>
+        <br>
+        <input type="radio" name="sexo" value="hombre" checked id="hombre"> Hombre
+        <br>
+        <input type="radio" name="sexo" value="mujer" id="mujer"> Mujer
+        <br>
+        <br>
+        <label for="">Incluir mi foto:</label>
+        <input type="file" name="foto">
+        <br>
+        <br>
+        <label for="">Enviar publicidad</label>
+        <input type="checkbox" checked>
+        <br>
+        <br>
+        <input type="submit" id="enviarForm" value="Guardar Cambios">
+        <input type="reset" id="borrarDatos" value="Borrar los datos introducidos">
+    </form>
+    <script>
+
+        window.addEventListener("load", inicio);
+
+        function inicio() {
+            document.getElementById("miForm").addEventListener("submit", envio);
+            document.getElementById("miForm").addEventListener("reset", focoPrimero);
+        }
+
+        function envio(){
+            var confirmacionEnvio = confirm("¿Estás seguro de que quieres enviar el formulario?");
+            var btn_enviar = document.getElementById("enviarForm");
+            var btn_borrar = document.getElementById("borrarDatos");
+
+            if (confirmacionEnvio){
+                alert("Formulario enviado con exito");
+                var inputs = document.getElementsByTagName("input");
+
+                for(var i=0; i<inputs.length;i++){
+                    if(inputs[i].id !="enviarForm" && inputs[i].id !="borrarDatos"){
+                       inputs[i].placeholder=inputs[i].value;
+                        inputs[i].value="";
+                    }
+                        inputs[i].disabled=true;
+                    
+                    
+                }
+                btn_enviar.value = "Enviado con éxito";
+                btn_enviar.disabled = true;
+                btn_borrar.disabled = true;
+                document.getElementsById("borrarDatos").focus();
+            }
+            else{
+                alert("Formulario no enviado");
+            }
+        }
+
+        function focoPrimero(){
+            var primerElemento = document.getElementById("nombre");
+            primerElemento.focus();
+        }
+
+    </script>
+</body>
+
+</html>

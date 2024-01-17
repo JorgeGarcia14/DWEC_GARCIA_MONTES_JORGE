@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="" method="">
+    <form action="#" id="miForm">
         <label for=""> Nombre: </label>
         <input type="text" size="42" maxlength="30">
         <br>
@@ -45,7 +45,8 @@
         <button id="okSelect" type="button" name="añadir">Seleccionar</button>
         <br>
         <br>
-        <input id="ok" type="submit" name="enviar" value="Guardar cambios">
+        <input type="submit" id="enviarForm" value="Enviar Formulario">
+        <input id="ok" type="button" name="enviar" value="Guardar cambios">
         <input type="reset" name="borrar" value="Borrar los datos introducidos">
     </form>
     <script>
@@ -57,18 +58,23 @@
         function inicio() {
             document.getElementById("ok").addEventListener("click", aprobar);
             document.getElementById("okSelect").addEventListener("click", añadir);
+            document.getElementById("miForm").addEventListener("submit", envio);
 
             // Obtener elemento y sel al cargar la página
             elemento = document.getElementById("aprobar");
             sel = elemento.selectedIndex;
         }
 
+        function envio(){
+            var confirmacionEnvio = confirm("¿Estás seguro de que quieres enviar el formulario?");
+        }
         function aprobar() {
             elemento =document.getElementById("aprobar");
             for (i = 0; i < elemento.options.length; i++) {
                 alert("Valor de la opcion " + elemento.options[i].value);
             }
-            alert("El valor de la opcion seleccionada es " + elemento.options[sel].value + " y el texto asociado es " + elemento.options[sel].text);
+            confirm("¿Estás seguro de que quieres enviarlo?")
+            //alert("El valor de la opcion seleccionada es " + elemento.options[sel].value + " y el texto asociado es " + elemento.options[sel].text);
             
             elemento.selectedIndex = 0;
         }
