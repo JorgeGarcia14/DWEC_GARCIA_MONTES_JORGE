@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //CREAR COOKIE Y MOSTRARLA
+        document.cookie = "usuario = Juan García";
+        document.cookie = "sexo = hombre";
+
+        //LEER COOKIE
+        var miCookie = document.cookie;
+        alert("Cookie creada y metida dentro de una variable: " + miCookie);
+
+        //MODIFICAR COOKIE
+        document.cookie= "usuario = Juan Jose Garcia";
+        alert("Cookie modificada: " + document.cookie);
+
+        //BORRAR UNA COOKIE
+        document.cookie="usuario=; expires = Thu, 01 Jan 1970 00:00:01 GMT";
+        alert("Cookie clave usuario borrada: " + document.cookie);
+    </script>
+</body>
+</html>
