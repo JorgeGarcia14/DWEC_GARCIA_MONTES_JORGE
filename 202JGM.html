@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 202</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            
+            text-align: center;  
+        }
+
+        form {
+            width: 715px;
+            height: 595px;
+            padding: 5px;
+            margin-top: 25px;
+            border: 2px solid #8c8c8c;
+            
+        }
+
+        fieldset{
+            border: 2px solid rgb(207, 207, 207);
+            padding: 10px;
+            margin: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        legend{
+            text-align: left;
+        }
+        input[type="submit"],
+        input[type="reset"]{
+            padding: 2px;
+            width:30%;
+            border: 1px solid #8c8c8c;
+            border-radius: 7px;
+            
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="button"]{
+            padding: 2px;
+            width:18%;
+            border: 1px solid #8c8c8c;
+            border-radius: 7px;
+            cursor: pointer;
+            
+        }
+        #asignatura{
+            padding: 2px;
+            width:10%;
+            border: 1px solid #8c8c8c;
+            background-color: #f4f3f3;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+        #diaPref{
+            padding: 2px;
+            width:12%;
+            border: 1px solid #8c8c8c;
+            background-color: #f4f3f3;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        input[type="reset"]:hover,
+        input[type="button"]:hover,
+        select:hover {
+            background-color: #f0f0f0; /* Cambia el color de fondo al pasar el ratón */
+        }
+
+    </style>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend >Datos personales</legend>
+        
+        Introduce tu nombre 
+        <input type="text">
+        <br>
+        <br>
+        <label for="mensaje"> Mensaje</label>
+        <textarea name="Mensaje" id="mensaje" cols="82" rows="6"></textarea>
+    </fieldset>
+    <br>
+         Elige un color:
+         <br>
+        Rojo
+        <input type="radio">
+        <br>
+        Verde
+        <input type="radio">
+        <br>
+        Azul
+        <input type="radio">
+        <br>
+        Oscuro
+        <input type="radio">
+        <br>
+        <br>
+
+        Selecciona una asignatura
+        <select name="" id="asignatura">
+            <option value="DAW">DAW</option>
+            <option value="DWES" selected>DWES</option>
+            <option value="DWEC">DWEC</option>
+            <option value="DIW">DIW</option>
+            <option value="Inglés">Inglés</option>
+        </select>
+        <br>
+        <br>
+        Selecciona los días con disponibilidad
+        <br>
+         <input type="checkbox">Lunes
+        <br>
+        <input type="checkbox">Martes
+        <br>
+        <input type="checkbox">Miércoles
+        <br>
+        <input type="checkbox">Jueves
+        <br>
+        <input type="checkbox">Viernes
+        <br>
+        <br>
+        Selecciona el día preferente
+        <select name="dias" id="diaPref">
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miercoles">Miercoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="Haz clic para enviar informacion">
+        <input type="reset" value="Comenzar a rellenar de nuevo">
+        <input type="button" value="Haz clic sobre mí">
+    </form>
+</body>
+</html>
