@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="button" id="btn" value="Generar mensaje">
+    <div id="mensaje"></div>
+    <script>
+        /*DIV PARA MENSAJES Y BOTON QUE GENERE UNA PROMESA QUE INVOQUE A UNA FUNCION LLAMADA PROBARPROMISE
+        FUNCION PROBARPROMISE DEBE CONTAR LAS VECES QUE SE PULSA EL BOTON Y SACA EN EL DIV:
+        1)ANTES DE CONSTRUIRLO,
+        2) dentro de la promesa antes de resolverla
+        3) dentro del then
+        4) fuera de la promesa
+        usar para la promesa: 
+
+        setTimeout(() => {
+        resolve(this.contador)
+       }, Math.random()*4000 + 1000);
+        }
+        */
+        window.addEventListener("load", inicio);
+        let contador=1; //CONTADOR SE INICIA EN 1
+        
+        function inicio(){
+            document.getElementById("btn").addEventListener("click", generarPromesa)
+        }
+        
+        
+        function generarPromesa(){
+            let contadorFijo=contador; //SE DUPLICA EL CONTADOR, PARA QUE 1 SE MANTENGA MIENTRAS QUE EL OTRO SE INCREMENTA
+            contador++; //SE INCREMENTA EL VALOR DEL CONTADOR, Y DEL FIJO
+        
+        const mensaje = document.getElementById("mensaje");
+            mensaje.insertAdjacentHTML("beforeend", `${contadorFijo}) Empieza el codigo sincrono <br>`)
+
+            mensaje.insertAdjacentHTML("beforeend", `${contadorFijo}) Dentro de la promesa, antes del timeout. Empieza el codigo asincrono <br>`)
+
+            let promesa = new Promise((resolve, reject)=>{
+                setTimeout(() => {
+                    mensaje.insertAdjacentHTML("beforeend", `${contadorFijo}) Dentro del then. Codigo asincrono terminado <br>`)
+                }, Math.random()*4000 + 1000);
+            })
+            mensaje.insertAdjacentHTML("beforeend", `${contadorFijo}) Codigo despues del .then. Codigo sincrono terminado <br>`)
+        }
+
+    </script>
+</body>
+</html>

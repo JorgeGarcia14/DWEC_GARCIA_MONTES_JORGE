@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="contenidoApi"></div>
+    <script>
+        async function fetchDatos() {
+            const response = await fetch("https://randomuser.me/api?results=10");
+            const datos = await response.json();
+
+            try {
+                const contenidoApi = document.getElementById("contenidoApi");
+
+                for (let i = 0; i < 10; i++) {
+                    // Crear elementos y configurar atributos
+                    const img = document.createElement("img");
+                    img.src = datos.results[i].picture.large;
+
+                    const p = document.createElement("p");
+                    p.textContent = `Nombre: ${datos.results[i].name.first}`;
+
+                    // Agregar elementos al contenedor
+                    contenidoApi.appendChild(img);
+                    contenidoApi.appendChild(p);
+                }
+
+                console.log(datos); // EL JSON DE LOS RESULTADOS QUE DEVUELVE LA API
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        fetchDatos();
+    </script>
+</body>
+
+</html>

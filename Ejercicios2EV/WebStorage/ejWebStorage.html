@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" id="aumento" value="Incrementar">
+    <input type="button" id="decremento" value="Disminuir">
+    <input type="button" id="logout" value="Desconectar">
+    <p id="saludo"></p>
+    <p id="contador"></p>
+</body>
+<script>
+
+    if (typeof(Storage) !== "undefined"){
+            //alert("El navegador soporta WebStorage")
+            if(localStorage.usuario !== undefined){
+                    document.getElementById("saludo").innerHTML = "Bienvenido de nuevo, " + localStorage.usuario + " !";
+            }
+            else{
+                    localStorage.usuario = prompt("¿Cual es tu nombre?")
+                    document.getElementById("saludo").innerHTML = "Es tu primera visita, " + localStorage.usuario + " !";
+            }
+
+            if (sessionStorage.getItem("contador") !== null){
+                sessionStorage.setItem("contador", 0);
+            }
+
+            document.getElementById("contador").innerHTML = "Contador: " + sessionStorage.getItem("contador") ;
+
+            document.getElementById("aumento").addEventListener("click", aumentar);
+            document.getElementById("decremento").addEventListener("click", disminuir);
+            document.getElementById("logout").addEventListener("click", desconectar);
+        }
+
+    function aumentar() {
+        sessionStorage.setItem("contador", Number(sessionStorage.getItem("contador"))+1);
+        document.getElementById("contador").innerHTML="Contador: " + sessionStorage.getItem("contador");
+    }
+
+    function disminuir() {
+        sessionStorage.setItem("contador", Number(sessionStorage.getItem("contador"))-1);
+        document.getElementById("contador").innerHTML="Contador: " + sessionStorage.getItem("contador");
+    }
+
+    function desconectar(){
+        alert("Se ha cerrado la sesion de " + localStorage.getItem("usuario"));
+        localStorage.removeItem("usuario");
+        document.getElementById("saludo").innerHTML = "";
+    }
+
+</script>
+
+</html>

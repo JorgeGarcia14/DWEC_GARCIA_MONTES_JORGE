@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ejemplo 1, 7 seg de delay
+        setTimeout(function(){
+            console.log("Ejecuto la funcion del ejemplo 1")
+        },7000);
+
+        //ejemplo 2, 4 seg de delay
+        setTimeout(() => {
+            console.log("Esta parte es asíncrona ejemplo 2")
+        }, 4000);
+
+        console.log("Esta parte es sincrona");
+
+        //ejemplo 3
+        let miPromesa= new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(console.log("Promesa ejecutada en 3 segundos"))
+            }, 3000);
+        })
+
+        //ejemplo 4
+
+        let realizado= false;
+
+        const tareaRealizada= new Promise((resolve,reject)=>{
+            if(realizado){
+                const trabajoCompletado = "La tarea se ha completado";
+                resolve(trabajoCompletado);
+                console.log(trabajoCompletado);
+            }
+            else{
+                const trabajoFallido = "La tarea no se ha completado";
+                resolve(trabajoFallido);
+                console.log(trabajoFallido);
+            }
+
+        })
+
+        //ejemplo 5
+        const miPromesa2 = new Promise((resolve, reject) =>{
+            const num = Math.floor(Math.random()*10);
+            setTimeout(() => {
+                (num > 5)
+                ?resolve(num)
+                :reject(new Error("Promesa no resuelta, se ha obtenido un numero menor que 5"))
+            }, 8000);
+        })
+        miPromesa2
+        .then(mensaje=>console.log(mensaje))
+        .catch(error=>console.log(error))
+    </script>
+</body>
+</html>

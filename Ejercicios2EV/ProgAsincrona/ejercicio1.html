@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const datos = [
+            {
+                id: 1,
+                nombre: "Juan",
+                edad: 18
+            },
+            {
+                id: 2,
+                nombre: "Jorge",
+                edad: 23
+            },
+            {
+                id: 3,
+                nombre: "Daniel",
+                edad: 25
+            }];
+
+        function getDatos() {
+            return (datos);
+        }
+
+        console.log(getDatos());
+
+        /* function getDatosProm(){
+             return new Promise((resolve, reject) => {
+ 
+                 setTimeout(() => {
+                     resolve(datos)
+                 }, 3000);
+             })
+         }*/
+
+        function getDatosProm() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(datos)
+                }, 8000);
+            })
+        }
+
+        //getDatosProm().then((datos) => console.log(datos)).catch(err => alert("error"));
+
+        async function asyawt() {
+            const misDatos = await getDatosProm()
+            console.log(misDatos);
+        }
+
+        
+
+        async function asyawt() {
+            try {
+                const misDatos = await getDatosProm()
+                console.log(misDatos);
+            }
+            catch (err) {
+                console.log(err.message)
+            }
+        }
+        
+    asyawt()
+
+
+        console.log(getDatosProm());
+    </script>
+</body>
+
+</html>
