@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herenecia de clases</title>
+
+</head>
+<body>
+    <div id="mensaje"></div>
+    <script>
+        /*PARA CREAR UNA HERENCIA HAY QUE UTILIZAR EXTENDS. UNA CLASE CREADA CON HERENCIA 
+        HEREDA TODOS LOS METODOS DE LA OTRA CLASE PERO EL CONSTRUCTOR NO LO HEREDA, HAY QUE PONER SUPER 
+        SI HEREDA PROPIEDADES DE LA CLASE PADRE*/
+        class Coche{
+            constructor(marca){
+                this.marca=marca;
+            }
+            anuncio(){
+            return "Ha llegado el nuevo coche de " + this.marca;
+        }
+        }
+    
+        
+    class Modelo extends Coche {
+        constructor(marca, modelo){
+            super (marca);
+            this.modelo=modelo;
+        }
+        anuncioCompleto(){ 
+            return this.anuncio() + ": modelo " + this.modelo;
+        }
+    }    
+    let miCoche = new Modelo("Toyota", "Yaris");
+    document.getElementById("mensaje").innerHTML= miCoche.anuncioCompleto();
+    </script>
+</body>
+</html>
