@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,108 +9,122 @@
         body {
             display: flex;
             justify-content: center;
-            
-            text-align: center;  
+
+            text-align: center;
         }
 
         form {
             width: 715px;
-            height: 595px;
             padding: 5px;
             margin-top: 25px;
             border: 2px solid #8c8c8c;
-            
+
         }
 
-        fieldset{
+        fieldset {
             border: 2px solid rgb(207, 207, 207);
             padding: 10px;
             margin: 0;
         }
+
         label {
             display: block;
             margin-bottom: 10px;
         }
 
-        legend{
+        legend {
             text-align: left;
         }
+
         input[type="submit"],
-        input[type="reset"]{
+        input[type="reset"] {
             padding: 2px;
-            width:30%;
+            width: 30%;
             border: 1px solid #8c8c8c;
             border-radius: 7px;
-            
+
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
-        input[type="button"]{
+
+        input[type="button"] {
             padding: 2px;
-            width:18%;
+            width: 18%;
             border: 1px solid #8c8c8c;
             border-radius: 7px;
             cursor: pointer;
-            
+
         }
-        #asignatura{
+
+        #asignatura {
             padding: 2px;
-            width:10%;
+            width: 10%;
             border: 1px solid #8c8c8c;
             background-color: #f4f3f3;
             border-radius: 5px;
             cursor: pointer;
-            
+
         }
-        #diaPref{
+
+        #diaPref {
             padding: 2px;
-            width:12%;
+            width: 12%;
             border: 1px solid #8c8c8c;
             background-color: #f4f3f3;
             border-radius: 7px;
             cursor: pointer;
         }
+
+        #contador {
+            text-align: left;
+        }
+
         input[type="submit"]:hover,
         input[type="reset"]:hover,
         input[type="button"]:hover,
         select:hover {
-            background-color: #f0f0f0; /* Cambia el color de fondo al pasar el ratón */
+            background-color: #f0f0f0;
+            /* Cambia el color de fondo al pasar el ratón */
         }
-
     </style>
 </head>
+
 <body>
     <form action="">
         <fieldset>
-            <legend >Datos personales</legend>
-        
-        Introduce tu nombre 
-        <input type="text">
+            <legend>Datos personales</legend>
+            Introduce tu nombre
+            <input type="text" required>
+            <br>
+            <br>
+            Introduce tu NIF
+            <input type="text" id="nif" required>
+            <br>
+            <br>
+            <div id="validacionNombre"></div>
+            <label for="mensaje"> Mensaje</label>
+            <textarea name="Mensaje" id="mensaje" cols="82" rows="6" minlength="2" maxlength="500" required></textarea>
+            <div id="contador"></div>
+        </fieldset>
         <br>
+        Elige un color:
         <br>
-        <label for="mensaje"> Mensaje</label>
-        <textarea name="Mensaje" id="mensaje" cols="82" rows="6"></textarea>
-    </fieldset>
-    <br>
-         Elige un color:
-         <br>
         Rojo
-        <input type="radio">
+        <input type="radio" name="color" required>
         <br>
         Verde
-        <input type="radio">
+        <input type="radio" name="color">
         <br>
         Azul
-        <input type="radio">
+        <input type="radio" name="color" checked>
         <br>
         Oscuro
-        <input type="radio">
+        <input type="radio" name="color">
         <br>
         <br>
 
         Selecciona una asignatura
-        <select name="" id="asignatura">
+        <select name="" id="asignatura" required>
             <option value="DAW">DAW</option>
             <option value="DWES" selected>DWES</option>
             <option value="DWEC">DWEC</option>
@@ -120,20 +135,23 @@
         <br>
         Selecciona los días con disponibilidad
         <br>
-         <input type="checkbox">Lunes
+        <input type="checkbox" name="dia">Lunes
         <br>
-        <input type="checkbox">Martes
+        <input type="checkbox" name="dia">Martes
         <br>
-        <input type="checkbox">Miércoles
+        <input type="checkbox" name="dia">Miércoles
         <br>
-        <input type="checkbox">Jueves
+        <input type="checkbox" name="dia">Jueves
         <br>
-        <input type="checkbox">Viernes
+        <input type="checkbox" name="dia">Viernes
         <br>
+        <input type="checkbox" id="seleccionarTodos"> <i id="mensajeSeleccionador">Seleccionar todo</i>
+        <div id="mensajeErrCheckbox"></div>
+
         <br>
         Selecciona el día preferente
         <select name="dias" id="diaPref">
-            <option value="lunes">Lunes</option>
+            <option value="lunes" selected>Lunes</option>
             <option value="martes">Martes</option>
             <option value="miercoles">Miercoles</option>
             <option value="jueves">Jueves</option>
@@ -141,9 +159,28 @@
         </select>
         <br>
         <br>
+        Fecha de matriculación
+        <input type="text" id="fechaMatriculacionDia" placeholder="Día" maxlength="2" size="2" required>
+        <input type="text" id="fechaMatriculacionMes" placeholder="Mes" maxlength="2" size="2" required>
+        <input type="text" id="fechaMatriculacionAnio" placeholder="Año" maxlength="4" size="4" required>
+        <br>
+        <br>
+        Cursos académicos
+        <select name="cursosAcademicos" id="cursosAcademicos">
+            <option value="20-21">20-21</option>
+            <option value="21-22">21-22</option>
+            <option value="22-23">22-23</option>
+            <option value="23-24">23-24</option>
+        </select>
+        <input type="text" id="nuevoCursoAcademico" placeholder="Añadir nuevo curso académico">
+        <input type="button" id="añadirCurso" value="Añadir Curso">
+        <br>
+        <br>
         <input type="submit" value="Haz clic para enviar informacion">
         <input type="reset" value="Comenzar a rellenar de nuevo">
-        <input type="button" value="Haz clic sobre mí">
+        <input type="button" value="Haz clic sobre mí" id="botonGoogle">
     </form>
+    <script src="202JGM.js"></script>
 </body>
+
 </html>
