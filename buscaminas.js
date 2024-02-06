@@ -1,36 +1,83 @@
 window.addEventListener("load", inicio);
 
-function inicio(){
+function inicio() {
   var botonInicio = document.getElementById("bt_inicio");
   botonInicio.addEventListener("click", iniciarJuego);
 }
 
-function crearTablero(){
-  //DUDA PARA JUANJO, QUE LAS BOMBAS SE CREEN AL INICIAR JUEGO O QUE SE DISTRIBUYAN AL DAR EL PRIMER CLICK?
+function iniciarJuego() {
+  crearTablero();
+  colocarBombas();
 }
 
+function crearTablero() {
+  // Obtener el tamaño seleccionado
+  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
 
-function iniciarJuego() {
-    // Obtener el tamaño seleccionado
-    var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
-  
-    // Crear el tablero
-    var tablero = document.getElementById("tableroJuego");
-    tablero.innerHTML = ''; // Limpiar el tablero antes de crear uno nuevo
-  
-    var tabla = document.createElement("table");
-    for (var i = 0; i < tamanoSeleccionado; i++) {
-      
-        var fila = document.createElement("tr");
-        fila.id=i;
-        for (var j = 0; j < tamanoSeleccionado; j++) {
-        var celda = document.createElement("td");
-        celda.id=j;
-        fila.appendChild(celda);
-      }
-      tabla.appendChild(fila);
+  // Crear el tablero
+  var tablero = document.getElementById("tableroJuego");
+  tablero.innerHTML = ""; // Limpiar el tablero antes de crear uno nuevo
+
+  var tabla = document.createElement("table");
+  for (var i = 0; i < tamanoSeleccionado; i++) {
+    var fila = document.createElement("tr");
+    for (var j = 0; j < tamanoSeleccionado; j++) {
+      var celda = document.createElement("td");
+      celda.id = i + "-" + j; // Asignar un ID único a cada celda
+      fila.appendChild(celda);
     }
-  
-    tablero.appendChild(tabla);
+    tabla.appendChild(fila);
   }
-  
+
+  tablero.appendChild(tabla);
+}
+
+function colocarBombas() {
+  // Obtener el tamaño seleccionado y la dificultad
+  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
+  let nivelSeleccionado = "";
+  if (tamanoSeleccionado == 8) {
+    nivelSeleccionado = "facil";
+  } else if (tamanoSeleccionado == 12) {
+    nivelSeleccionado = "medio";
+  } else {
+    nivelSeleccionado = "dificil";
+  }
+  var numBombas = 1;
+
+  // Determinar la cantidad de bombas según el nivel seleccionado
+  switch (nivelSeleccionado) {
+    case "facil":
+      numBombas = 10;
+      break;
+    case "medio":
+      numBombas = 16;
+      break;
+    case "dificil":
+      numBombas = 24;
+      break;
+    default:
+      numBombas = 10; // Valor por defecto si no se selecciona ningún nivel
+      break;
+  }
+
+  // Array para almacenar las posiciones de las bombas
+  var bombPositions = [];
+
+  // Colocar bombas aleatoriamente
+  while (bombPositions.length < numBombas) {
+    var fila = Math.floor(Math.random() * tamanoSeleccionado);
+    var columna = Math.floor(Math.random() * tamanoSeleccionado);
+    var posicion = fila + "-" + columna;
+
+    // Verificar si la posición ya tiene una bomba
+    if (!bombPositions.includes(posicion)) {
+      // Guardar la posición de la bomba en el array
+      bombPositions.push(posicion);
+
+      // Aquí podrías actualizar visualmente el tablero para mostrar las bombas, por ejemplo:
+      var celda = document.getElementById(fila + "-" + columna);
+      celda.innerHTML = "💣"; // Mostrar una 'B' en la celda para representar una bomba
+    }
+  }
+}
