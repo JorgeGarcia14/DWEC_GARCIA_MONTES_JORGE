@@ -3,13 +3,54 @@ window.addEventListener("load", inicio);
 function inicio() {
   var botonInicio = document.getElementById("bt_inicio");
   botonInicio.addEventListener("click", iniciarJuego);
+  
 }
 
 function iniciarJuego() {
   crearTablero();
   colocarBombas();
+  asignarEventosCeldas();
 }
 
+function asignarEventosCeldas() {
+  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
+
+  for (var i = 0; i < tamanoSeleccionado; i++) {
+      for (var j = 0; j < tamanoSeleccionado; j++) {
+          var celda = document.getElementById(i + "-" + j);
+          celda.addEventListener("click", manejarClicCelda);
+      }
+  }
+}
+
+function revelarBombas(fila, columna){
+  
+  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
+
+  for (var i = 0; i < tamanoSeleccionado; i++) {
+      for (var j = 0; j < tamanoSeleccionado; j++) {
+          var celda = document.getElementById(i + "-" + j);
+          if(celda.className=="bomba"){
+            celda.innerHTML = "💣";
+          }
+      }
+  }
+
+}
+
+
+function manejarClicCelda(event) {
+  // Aquí puedes agregar la lógica que deseas ejecutar cuando se hace clic en una celda
+  if(event.target.className == "bomba"){
+    alert("Fin de la partida");
+    revelarBombas();
+  }
+  else{
+
+  }
+  console.log("Celda clickeada:", event.target.className);
+  // Por ejemplo, puedes revelar el contenido de la celda o realizar alguna otra acción
+}
 function crearTablero() {
   // Obtener el tamaño seleccionado
   var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
@@ -77,7 +118,9 @@ function colocarBombas() {
 
       // Aquí podrías actualizar visualmente el tablero para mostrar las bombas, por ejemplo:
       var celda = document.getElementById(fila + "-" + columna);
-      celda.innerHTML = "💣"; // Mostrar una 'B' en la celda para representar una bomba
+      celda.className = "bomba"; // Mostrar una 'B' en la celda para representar una bomba
     }
   }
 }
+
+
