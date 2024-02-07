@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor">
+        <button id="boton">Boton</button>
+    </div>
+    <script>
+        document.getElementById("contenedor").addEventListener("click", function(){
+            console.log("Contenedor hizo clic");
+
+        }, true) //SI SE PONE TRUE, LO HACE DESDE EL PADRE AL HIJO, POR TANTO SALDRÁ PRIMERO EL EVENTO DEL DIV Y LUEGO EL DEL BOTON
+
+        document.getElementById("boton").addEventListener("click", function(){
+            console.log("Boton hizo clic");
+            //event.stopPropagation(); //DETIENE LA PROPAGACION DEL EVENTO, SOLO SALDRIA BOTON HIZO CLIC, EL EVENTO DEL PADRE NO
+        })
+    </script>
+</body>
+</html>
