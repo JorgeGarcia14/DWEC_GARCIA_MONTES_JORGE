@@ -98,7 +98,7 @@
 </head>
 
 <body>
-    <form action="" id="miForm">
+    <form action="#" id="miForm">
         <fieldset>
             <legend>Datos personales</legend>
             Introduce tu nombre
@@ -117,7 +117,8 @@
             <br>
             <label for="mensaje"> Mensaje</label>
             <textarea name="Mensaje" id="mensaje" cols="82" rows="6" minlength="2" maxlength="500" required></textarea>
-            <div id="contador"></div>
+            <div id="contador" class="valido"></div>
+            <div id="errorMensaje" class="error"></div>
         </fieldset>
         <br>
         Elige un color:
@@ -173,17 +174,13 @@
         <br>
         <br>
         Fecha de matriculación
-        <input type="text" id="fechaMatriculacionDia" placeholder="Día" pattern="(0[1-9]|[12][0-9]|3[01])" title="El día debe ser 01 como mínimo, 31 como máximo" size="2" required>
-        <input type="text" id="fechaMatriculacionMes" placeholder="Mes" pattern="(0[1-9]|1[0-2])" title="El mes debe ser 01 como mínimo, 12 como máximo" size="2" required>
-        <input type="text" id="fechaMatriculacionAnio" placeholder="Año" pattern="[0-9]{4}" title="El año debe ser un valor de 4 dígitos" size="4" required>
+        <input type="text" id="fechaMatriculacionDia" name ="fecha" placeholder="Día" pattern="(0[1-9]|[12][0-9]|3[01])" title="El día debe ser 01 como mínimo, 31 como máximo" size="2" required>
+        <input type="text" id="fechaMatriculacionMes" name ="fecha" placeholder="Mes" pattern="(0[1-9]|1[0-2])" title="El mes debe ser 01 como mínimo, 12 como máximo" size="2" required>
+        <input type="text" id="fechaMatriculacionAnio" name ="fecha" placeholder="Año" pattern="[0-9]{4}" title="El año debe ser un valor de 4 dígitos" size="4" required>
         <br>
         <br>
-        <div id="errorDia" class="error"></div>
-        <div id="validoDia" class="valido"></div>
-        <div id="errorMes" class="error"></div>
-        <div id="validoMes" class="valido"></div>
-        <div id="errorAño" class="error"></div>
-        <div id="validoAño" class="valido"></div>
+        <div id="errorFecha" class="error"></div>
+        <div id="validoFecha" class="valido"></div>
         <br>
         Cursos académicos
         <select name="cursosAcademicos" id="cursosAcademicos">
@@ -196,7 +193,7 @@
         <input type="button" id="añadirCurso" value="Añadir Curso">
         <br>
         <br>
-        <input type="submit" value="Haz clic para enviar informacion">
+        <button type="submit"> Enviar</button>
         <input type="reset" value="Comenzar a rellenar de nuevo">
         <input type="button" value="Haz clic sobre mí" id="botonGoogle">
     </form>
