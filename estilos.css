@@ -34,7 +34,9 @@ body {
     text-align: center;
     background-color: #cdcdcd; /* Color grisaceo */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.468); /* Añadir sombra */
-    transition: background-color 0.15s ease
+    transition: background-color 0.15s ease;
+    user-select: none;
+    
   }
   td:hover {
     background-color: #8787877e; /* Cambiar el color al pasar el ratón */
@@ -43,5 +45,37 @@ body {
   select {
     margin: 0 10px; /* Añade espacio alrededor del select */
   }
+
+.vacia-revelada{
+  background-color: #585858;
+  }
+  .numero-1 {
+    color: blue;
+    background-color: #a7a7a7; /* Color azul para el número 1 */
+  }
   
+  .numero-2 {
+    color: green;
+    background-color: #a7a7a7; /* Color verde para el número 2 */
+  }
+  
+  .numero-3 {
+    color: red;
+    background-color: #a7a7a7; /* Color rojo para el número 3 */
+  }
+  
+  .numero-4 {
+    color: brown;
+    background-color: #a7a7a7; /* Color marrón para el número 4 */
+  }
+  
+  .numero-5 {
+    color: aqua;
+    background-color: #a7a7a7; /* Color turquesa para el número 5 */
+  }
+  
+  .numero-6 {
+    color: yellow;
+    background-color: #a7a7a7; /* Color amarillo para el número 6 */
+  }
   
