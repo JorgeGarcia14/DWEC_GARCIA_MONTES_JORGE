@@ -116,41 +116,49 @@ function colocarBombas() {
 function manejarClicDerecho(event) {
   event.preventDefault(); // Evitar que aparezca el menú contextual
 
-    // Obtener la celda que ha sido clickeada
-    var celda = event.target;
+  var celda = event.target;
 
-    // Cambiar el estado de la celda entre marcada y no marcada (para simular la bandera)
-    if (celda.classList.contains("marcada")) {
-        celda.classList.remove("marcada");
-        celda.innerHTML="";
-    } else{
-        celda.classList.add("marcada");
-        celda.innerHTML="🚩";
-    }
+  // Verificar si la celda ya ha sido revelada
+  if (celda.classList.contains("revelada")) {
+    return; // No hacer nada si la celda ya ha sido revelada
+  }
+
+  // Cambiar el estado de la celda entre marcada y no marcada (para simular la bandera)
+  if (celda.classList.contains("marcada")) {
+    celda.classList.remove("marcada");
+    celda.innerHTML = "";
+  } else {
+    celda.classList.add("marcada");
+    celda.innerHTML = "🚩";
+  }
 }
 
 
 function manejarClicCelda(event) {
   event.preventDefault();
+  
   var celda = event.target;
-  // Aquí puedes agregar la lógica que deseas ejecutar cuando se hace clic en una celda
-  if(event.target.className == "bomba"){
-    alert("Fin de la partida");
+
+  // Verificar si la celda ya ha sido revelada
+  if (celda.classList.contains("revelada")) {
+    return; // No hacer nada si la celda ya ha sido revelada
+  }
+
+  if (celda.classList.contains("marcada")) {
+    // Si la celda está marcada, no hacer nada al hacer clic
+    return;
+  }
+
+  // Lógica para revelar el contenido de la celda
+  if (celda.classList.contains("bomba")) {
+    alert("¡Has encontrado una bomba! Fin de la partida");
     revelarBombas();
-    
+  } else {
+    var idCelda = celda.id.split("-");
+    var fila = parseInt(idCelda[0]);
+    var columna = parseInt(idCelda[1]);
+    destaparCelda(fila, columna);
   }
-  else{
-    
-      // Si la celda no es una bomba, revelar las celdas vacías y mostrar el número de bombas adyacentes
-      var idCelda = celda.id.split("-");
-      var fila = parseInt(idCelda[0]);
-      var columna = parseInt(idCelda[1]);
-  
-      // Llamar a la función DestaparCelda con las coordenadas de la celda clickeada
-      destaparCelda(fila, columna);
-  }
-  
-  // Por ejemplo, puedes revelar el contenido de la celda o realizar alguna otra acción
 }
 
 function destaparCelda(fila, columna) {
