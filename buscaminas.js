@@ -1,37 +1,43 @@
 window.addEventListener("load", inicio);
+let bombasMarcadasCorrectamente = 0;
+let celdaReveladas =0;
+let botonInicio = document.getElementById("bt_inicio");
+let tamanoSeleccionado = document.getElementById("tamanoTablero").value;
 
 function inicio() {
-  var botonInicio = document.getElementById("bt_inicio");
   botonInicio.addEventListener("click", iniciarJuego);
-  
+
 }
 
 function iniciarJuego() {
+  bombasMarcadasCorrectamente = 0;
+  celdaReveladas =0;
+  botonInicio.innerHTML="Iniciar juego";
   crearTablero();
   colocarBombas();
   asignarEventosCeldas();
+  ganarPartida();
 }
 
 function asignarEventosCeldas() {
-  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
 
-  for (var i = 0; i < tamanoSeleccionado; i++) {
-      for (var j = 0; j < tamanoSeleccionado; j++) {
-          var celda = document.getElementById(i + "-" + j);
+  for (let i = 0; i < tamanoSeleccionado; i++) {
+      for (let j = 0; j < tamanoSeleccionado; j++) {
+          let celda = document.getElementById(i + "-" + j);
           celda.addEventListener("click", manejarClicCelda);
           celda.addEventListener("contextmenu", manejarClicDerecho)
+          
       }
   }
 }
 
 function revelarBombas(){
   
-  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
 
-  for (var i = 0; i < tamanoSeleccionado; i++) {
-      for (var j = 0; j < tamanoSeleccionado; j++) {
-          var celda = document.getElementById(i + "-" + j);
-          if(celda.classList.contains("bomba")){
+  for (let i = 0; i < tamanoSeleccionado; i++) {
+      for (let j = 0; j < tamanoSeleccionado; j++) {
+          let celda = document.getElementById(i + "-" + j);
+          if(celda.classList.contains("bomba") && !celda.classList.contains("marcada")){
             celda.innerHTML = "💣";
             celda.classList.add("revelada"); 
           }
@@ -42,18 +48,16 @@ function revelarBombas(){
 }
 
 function crearTablero() {
-  // Obtener el tamaño seleccionado
-  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
 
   // Crear el tablero
-  var tablero = document.getElementById("tableroJuego");
+  let tablero = document.getElementById("tableroJuego");
   tablero.innerHTML = ""; // Limpiar el tablero antes de crear uno nuevo
 
-  var tabla = document.createElement("table");
-  for (var i = 0; i < tamanoSeleccionado; i++) {
-    var fila = document.createElement("tr");
-    for (var j = 0; j < tamanoSeleccionado; j++) {
-      var celda = document.createElement("td");
+  let tabla = document.createElement("table");
+  for (let i = 0; i < tamanoSeleccionado; i++) {
+    let fila = document.createElement("tr");
+    for (let j = 0; j < tamanoSeleccionado; j++) {
+      let celda = document.createElement("td");
       celda.id = i + "-" + j; // Asignar un ID único a cada celda
       fila.appendChild(celda);
     }
@@ -64,9 +68,9 @@ function crearTablero() {
 }
 
 function colocarBombas() {
-  // Obtener el tamaño seleccionado y la dificultad
-  var tamanoSeleccionado = document.getElementById("tamanoTablero").value;
+ 
   let nivelSeleccionado = "";
+
   if (tamanoSeleccionado == 8) {
     nivelSeleccionado = "facil";
   } else if (tamanoSeleccionado == 12) {
@@ -74,7 +78,7 @@ function colocarBombas() {
   } else {
     nivelSeleccionado = "dificil";
   }
-  var numBombas = 1;
+  let numBombas = 1;
 
   // Determinar la cantidad de bombas según el nivel seleccionado
   switch (nivelSeleccionado) {
@@ -93,13 +97,13 @@ function colocarBombas() {
   }
 
   // Array para almacenar las posiciones de las bombas
-  var bombPositions = [];
+  let bombPositions = [];
 
   // Colocar bombas aleatoriamente
   while (bombPositions.length < numBombas) {
-    var fila = Math.floor(Math.random() * tamanoSeleccionado);
-    var columna = Math.floor(Math.random() * tamanoSeleccionado);
-    var posicion = fila + "-" + columna;
+    let fila = Math.floor(Math.random() * tamanoSeleccionado);
+    let columna = Math.floor(Math.random() * tamanoSeleccionado);
+    let posicion = fila + "-" + columna;
 
     // Verificar si la posición ya tiene una bomba
     if (!bombPositions.includes(posicion)) {
@@ -107,7 +111,7 @@ function colocarBombas() {
       bombPositions.push(posicion);
 
       // Aquí podrías actualizar visualmente el tablero para mostrar las bombas, por ejemplo:
-      var celda = document.getElementById(fila + "-" + columna);
+      let celda = document.getElementById(fila + "-" + columna);
       celda.className = "bomba"; 
     }
   }
@@ -116,7 +120,16 @@ function colocarBombas() {
 function manejarClicDerecho(event) {
   event.preventDefault(); // Evitar que aparezca el menú contextual
 
-  var celda = event.target;
+  let celda = event.target;
+
+  if (celda.classList.contains("bomba")) {
+    if (celda.classList.contains("marcada")) {
+      bombasMarcadasCorrectamente--;
+    } else {
+      bombasMarcadasCorrectamente++;
+    }
+    console.log(bombasMarcadasCorrectamente);
+  }
 
   // Verificar si la celda ya ha sido revelada
   if (celda.classList.contains("revelada")) {
@@ -131,13 +144,14 @@ function manejarClicDerecho(event) {
     celda.classList.add("marcada");
     celda.innerHTML = "🚩";
   }
+
+  // Llamar a ganarPartida después de marcar/desmarcar la celda
+  ganarPartida();
 }
-
-
 function manejarClicCelda(event) {
   event.preventDefault();
-  
-  var celda = event.target;
+  let boton = document.getElementById("bt_inicio");
+  let celda = event.target;
 
   // Verificar si la celda ya ha sido revelada
   if (celda.classList.contains("revelada")) {
@@ -152,36 +166,39 @@ function manejarClicCelda(event) {
   // Lógica para revelar el contenido de la celda
   if (celda.classList.contains("bomba")) {
     alert("¡Has encontrado una bomba! Fin de la partida");
+    boton.innerHTML="Reiniciar partida";
     revelarBombas();
   } else {
-    var idCelda = celda.id.split("-");
-    var fila = parseInt(idCelda[0]);
-    var columna = parseInt(idCelda[1]);
+    let idCelda = celda.id.split("-");
+    let fila = parseInt(idCelda[0]);
+    let columna = parseInt(idCelda[1]);
     destaparCelda(fila, columna);
+    ganarPartida();
   }
+  
 }
 
 function destaparCelda(fila, columna) {
-  // Obtener el tamaño seleccionado
-  var tamanoSeleccionado = parseInt(document.getElementById("tamanoTablero").value);
 
   // Recorrer las celdas adyacentes a la celda clickeada
-  for (var i = Math.max(0, fila - 1); i <= Math.min(tamanoSeleccionado - 1, fila + 1); i++) {
-    for (var j = Math.max(0, columna - 1); j <= Math.min(tamanoSeleccionado - 1, columna + 1); j++) {
-      var celda = document.getElementById(i + "-" + j);
+  for (let i = Math.max(0, fila - 1); i <= Math.min(tamanoSeleccionado - 1, fila + 1); i++) {
+    for (let j = Math.max(0, columna - 1); j <= Math.min(tamanoSeleccionado - 1, columna + 1); j++) {
+      let celda = document.getElementById(i + "-" + j);
 
       // Verificar si la celda no ha sido revelada aún y no es una bomba
       if (!celda.classList.contains("revelada") && !celda.classList.contains("bomba")) {
         // Marcar la celda como revelada
         celda.classList.add("revelada");
-
+        
         // Contar el número de bombas adyacentes
-        var numBombas = contarBombasAdyacentes(i, j);
+        let numBombas = contarBombasAdyacentes(i, j);
         
         // Si la celda no tiene bombas adyacentes, seguir destapando celdas vacías recursivamente
-        if (numBombas === 0) {
+        if (numBombas === 0) 
+        {
           destaparCelda(i, j);
-        } else {
+        } 
+        else {
           // Si la celda tiene bombas adyacentes, mostrar el número de bombas en la celda
           celda.innerHTML = numBombas;
           celda.classList.add("numero-" + numBombas);
@@ -197,13 +214,12 @@ function destaparCelda(fila, columna) {
 }
 
 function contarBombasAdyacentes(fila, columna) {
-  var tamanoSeleccionado = parseInt(document.getElementById("tamanoTablero").value);
-  var count = 0;
+  let count = 0;
 
   // Recorrer las celdas adyacentes a la celda dada
-  for (var i = Math.max(0, fila - 1); i <= Math.min(tamanoSeleccionado - 1, fila + 1); i++) {
-    for (var j = Math.max(0, columna - 1); j <= Math.min(tamanoSeleccionado - 1, columna + 1); j++) {
-      var celda = document.getElementById(i + "-" + j);
+  for (let i = Math.max(0, fila - 1); i <= Math.min(tamanoSeleccionado - 1, fila + 1); i++) {
+    for (let j = Math.max(0, columna - 1); j <= Math.min(tamanoSeleccionado - 1, columna + 1); j++) {
+      let celda = document.getElementById(i + "-" + j);
       if (celda.classList.contains("bomba")) {
         count++;
       }
@@ -211,4 +227,49 @@ function contarBombasAdyacentes(fila, columna) {
   }
 
   return count;
+}
+
+function inhabilitar(){
+  
+    for (let i = 0; i < tamanoSeleccionado; i++) {
+        for (let j = 0; j < tamanoSeleccionado; j++) {
+          let celda = document.getElementById(i + "-" + j);
+            celda.classList.add("revelada");
+        }
+    }
+  
+  
+}
+
+function ganarPartida() {
+ 
+  let numBombas = 0;
+  let boton = document.getElementById("bt_inicio");
+  // Contar el número total de bombas colocadas
+  for (let i = 0; i < tamanoSeleccionado; i++) {
+    for (let j = 0; j < tamanoSeleccionado; j++) {
+      let celda = document.getElementById(i + "-" + j);
+      if (celda.classList.contains("bomba")) {
+        numBombas++;
+      }
+    }
+  }
+
+  // Contar el número de celdas no bomba reveladas
+  let celdasReveladasNoBombas = 0;
+  for (let i = 0; i < tamanoSeleccionado; i++) {
+    for (let j = 0; j < tamanoSeleccionado; j++) {
+      let celda = document.getElementById(i + "-" + j);
+      if (!celda.classList.contains("bomba") && celda.classList.contains("revelada")) {
+        celdasReveladasNoBombas++;
+      }
+    }
+  }
+
+  // Verificar si todas las celdas no bomba están reveladas
+  if (celdasReveladasNoBombas === (tamanoSeleccionado * tamanoSeleccionado - numBombas)) {
+    alert("¡Has ganado!");
+    boton.innerHTML = "Reiniciar partida";
+    inhabilitar();
+  }
 }
