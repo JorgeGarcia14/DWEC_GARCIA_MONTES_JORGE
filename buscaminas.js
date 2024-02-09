@@ -85,7 +85,7 @@ function colocarBombas() {
       numBombas = 16;
       break;
     case "dificil":
-      numBombas = 24;
+      numBombas = 40;
       break;
     default:
       numBombas = 10; // Valor por defecto si no se selecciona ningún nivel
