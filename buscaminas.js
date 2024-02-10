@@ -39,9 +39,9 @@ function revelarBombas(){
           let celda = document.getElementById(i + "-" + j);
           if(celda.classList.contains("bomba") && !celda.classList.contains("marcada")){
             celda.innerHTML = "💣";
-            celda.classList.add("revelada"); 
+            celda.classList.add("bloqueadaBomba"); 
           }
-          celda.classList.add("revelada");
+          celda.classList.add("bloqueada");
       }
   }
 
@@ -131,7 +131,12 @@ function manejarClicDerecho(event) {
     console.log(bombasMarcadasCorrectamente);
   }
 
-  
+  if (celda.classList.contains("bloqueada")) {
+    return; // No hacer nada si la celda ya ha sido revelada
+  }
+  if (celda.classList.contains("bloqueadaBomba")) {
+    return; // No hacer nada si la celda ya ha sido revelada
+  }
 
   // Cambiar el estado de la celda entre marcada y no marcada (para simular la bandera)
   if (celda.classList.contains("marcada")) {
@@ -160,6 +165,13 @@ function manejarClicCelda(event) {
   if (celda.classList.contains("marcada")) {
     // Si la celda está marcada, no hacer nada al hacer clic
     return;
+  }
+
+  if (celda.classList.contains("bloqueada")) {
+    return; // No hacer nada si la celda ya ha sido bloqueada
+  }
+  if (celda.classList.contains("bloqueadaBomba")) {
+    return; // No hacer nada si la celda ya ha sido bloqueada
   }
 
   // Lógica para revelar el contenido de la celda
