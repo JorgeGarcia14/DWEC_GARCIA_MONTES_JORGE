@@ -2,6 +2,11 @@ window.onload = iniciar;
 
 function iniciar() {
     document.getElementById("enviar").addEventListener("click", validar, false);
+    document.getElementById("borrar").addEventListener("click", borrarTodo);
+}
+function borrarTodo(){
+   document.getElementById("mensajeError").textContent="";
+   document.getElementById("error").style.border = "2px solid black";
 }
 
 function validarNombre() {

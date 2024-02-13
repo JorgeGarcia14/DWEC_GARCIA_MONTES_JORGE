@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#">
+        Numero de checkbox
+        <input type="text" id="numCheckbox" pattern="[0-9]">
+        <input type="button" id="botonAgregar" value="Crear checkbox">
+    </form>
+    <div id="checkboxCreados"></div>
+    <script>
+        /*Hacer un programa que permita crear checkbox de forma dinámica al pulsar el botón.
+            • El número de checkbox, debe ser especificado en un campo de tipo texto(input).*/
+
+        window.addEventListener("load", inicio);
+
+        function inicio() {
+
+            document.getElementById("botonAgregar").addEventListener("click", crearCheckbox);
+
+        }
+
+        function crearCheckbox() {
+            try {
+                var div = document.getElementById("checkboxCreados");
+                var numero = parseInt(document.getElementById("numCheckbox").value);
+
+                if (isNaN(numero)) {
+                
+                    console.log("ERROR");
+                
+                }
+
+                else {
+
+                    // div.innerHTML=""; //PARA QUE SE BORRE AL INICIAR LA FUNCION
+
+                    var nuevoCheckbox, nuevoLabel; // Declarar las variables fuera del bucle
+                    
+                    for (var i = 0; i < numero; i++) {
+                        nuevoCheckbox = document.createElement("input"); // Crear un elemento input en lugar de "checkbox"
+                        //nuevoCheckbox.type = "checkbox"; // Establecer el tipo como checkbox
+                        nuevoCheckbox.setAttribute("type", "checkbox"); //OTRA MANERA DE HACERLO
+                        nuevoLabel = document.createElement("label");
+                        nuevoLabel.textContent = Math.floor(Math.random()*11); // Cambiar el texto del label
+
+                        div.appendChild(nuevoCheckbox);
+                        div.appendChild(nuevoLabel);
+                        div.appendChild(document.createElement("br")); // Añadir un salto de línea entre cada checkbox
+                    }
+                }
+
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

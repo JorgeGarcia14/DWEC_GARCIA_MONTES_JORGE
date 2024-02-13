@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mensaje"></div>
+
+    <script>
+        fetch("test.json")
+            .then(response => response.json())
+            .then(data => showInfo(data))
+            .catch(error => console.error("Error al cargar el archivo JSON:", error));
+
+        function showInfo(data) {
+            var countryNames = data.countries.map(country => country.name);
+            document.getElementById("mensaje").innerHTML = countryNames.join(", ");
+            console.log(countryNames);
+        }
+    </script>
+</body>
+
+</html>

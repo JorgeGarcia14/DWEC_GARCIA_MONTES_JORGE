@@ -1,0 +1,16 @@
+{
+    "countries":[{
+        "name": "Indonesia",
+        "capital":"Jakarta"
+    },
+    {
+        "name": "España",
+        "capital":"Madrid"
+    },
+    {
+        "name":"Francia",
+        "capital":"Paris"
+    }
+        
+    ]
+}
