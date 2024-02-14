@@ -21,6 +21,12 @@
             document.getElementById("mensaje").innerHTML = countryNames.join(", ");
             console.log(countryNames);
         }
+
+        fetch("test.txt")
+            .then(response => response.text())
+            .then(data => console.log(data.split(" ").join(" - ")))
+            .catch(error => console.error("Error al cargar el archivo de texto:", error));
+
     </script>
 </body>
 

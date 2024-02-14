@@ -13,12 +13,13 @@
         async function fetchDatos() {
             const response = await fetch("https://randomuser.me/api?results=10");
             const datos = await response.json();
-
+            console.log(datos.results[1]);
             try {
                 const contenidoApi = document.getElementById("contenidoApi");
 
                 for (let i = 0; i < 10; i++) {
                     // Crear elementos y configurar atributos
+                    
                     const img = document.createElement("img");
                     img.src = datos.results[i].picture.large;
 
