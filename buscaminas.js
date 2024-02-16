@@ -2,8 +2,8 @@ window.addEventListener("load", inicio);
 let bombasMarcadasCorrectamente = 0;
 let celdaReveladas =0;
 let botonInicio = document.getElementById("bt_inicio");
-
-
+let intervaloCronometro; 
+let contadorFormateado;
 function inicio() {
   botonInicio.addEventListener("click", iniciarJuego);
 
@@ -15,8 +15,28 @@ function iniciarJuego() {
   botonInicio.innerHTML="Iniciar juego";
   crearTablero();
   colocarBombas();
+  cronometro();
   asignarEventosCeldas();
   ganarPartida();
+}
+
+function cronometro() {
+  let contador = 0;
+  intervaloCronometro = setInterval(function() {
+    contador++;
+    if (contador > 999) {
+      contador = 0;
+    }
+    // Formatear el contador a 3 dígitos (agregando ceros a la izquierda si es necesario)
+    contadorFormateado = contador.toString().padStart(3, '0');
+    // Actualizar el contenido del elemento HTML con el contador
+    // Suponiendo que tienes un elemento con id "contador" donde mostrar el tiempo
+    document.getElementById('cronometro').innerHTML = "Contador: " + contadorFormateado;
+  }, 1000); // El intervalo se ejecuta cada segundo (1000 milisegundos)
+}
+
+function pararCronometro(){
+  clearInterval(intervaloCronometro);
 }
 
 function asignarEventosCeldas() {
@@ -26,7 +46,6 @@ function asignarEventosCeldas() {
           let celda = document.getElementById(i + "-" + j);
           celda.addEventListener("click", manejarClicCelda);
           celda.addEventListener("contextmenu", manejarClicDerecho)
-          
       }
   }
 }
@@ -44,6 +63,7 @@ function revelarBombas(){
           celda.classList.add("bloqueada");
       }
   }
+  pararCronometro();
 
 }
 
@@ -137,6 +157,9 @@ function manejarClicDerecho(event) {
   if (celda.classList.contains("bloqueadaBomba")) {
     return; // No hacer nada si la celda ya ha sido revelada
   }
+  if (celda.classList.contains("revelada")){
+    return;
+  }
 
   // Cambiar el estado de la celda entre marcada y no marcada (para simular la bandera)
   if (celda.classList.contains("marcada")) {
@@ -145,7 +168,7 @@ function manejarClicDerecho(event) {
     celda.innerHTML = "";
   } else {
     celda.classList.add("marcada");
-    celda.classList.add("revelada");
+    
     celda.innerHTML = "🚩";
   }
 
@@ -170,13 +193,15 @@ function manejarClicCelda(event) {
   if (celda.classList.contains("bloqueada")) {
     return; // No hacer nada si la celda ya ha sido bloqueada
   }
+
   if (celda.classList.contains("bloqueadaBomba")) {
     return; // No hacer nada si la celda ya ha sido bloqueada
   }
 
   // Lógica para revelar el contenido de la celda
   if (celda.classList.contains("bomba")) {
-    alert("¡Has encontrado una bomba! Fin de la partida");
+    alert("¡Has encontrado una bomba! Fin de la partida / Tiempo: " + contadorFormateado);
+    pararCronometro();
     boton.innerHTML="Reiniciar partida";
     revelarBombas();
   } else {
@@ -279,7 +304,8 @@ function ganarPartida() {
 
   // Verificar si todas las celdas no bomba están reveladas
   if (celdasReveladasNoBombas === (tamanoSeleccionado * tamanoSeleccionado - numBombas)) {
-    alert("¡Has ganado!");
+    alert("¡Has ganado en " + contadorFormateado + " segundos!");
+    pararCronometro();
     boton.innerHTML = "Reiniciar partida";
     inhabilitar();
   }
