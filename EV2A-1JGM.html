@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            text-align: center;
+            font-size: 50px;
+            margin-top: 75px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="cuentaAtras"></div> 
+    <script>
+        async function salidaEtapa(dorsal) { //FUNCION ASINCRONA PARA LA CUENTA ATRAS DEL CICLISTA
+          let cuentaAtrasInicio = 3; //INICIO DE LA CUENTA ATRAS (3 SEG)
+      
+          await new Promise((resolve) => { //AWAIT DE UNA PROMESA
+            const intervaloCuentaAtras = setInterval(() => { //SE HACE UNA FUNCION CON UN SETINTERVAL DE 1 SEG PARA EL CONTADOR
+              if (cuentaAtrasInicio > 0) { //MIENTRAS QUE ES MAYOR QUE 0 EL CONTADOR, SALDRA EL DORSAL Y 3,2,1 SUCESIVAMENTE
+                document.getElementById("cuentaAtras").innerText = `Dorsal ${dorsal} ${cuentaAtrasInicio}`; //MENSAJE PARA EL DIV
+                cuentaAtrasInicio--; // SE VA RESTANDO DE 1 EN 1 CADA SEGUNDO DEL INTERVALO PARA HACER LA CUENTA ATRAS
+              } 
+              else //CUANDO LLEGA A CERO SE PONE EN EL DIV EL MENSAJE CON LA SALIDA Y EL RESOLVE PARA QUE LA PROMESA SE EJECUTE 
+              {
+                document.getElementById("cuentaAtras").innerText = `Dorsal ${dorsal} ¡SALIDA!`; //MENSAJE FINAL
+                resolve(); //RESOLVE PARA QUE LA PROMESA SE EJECUTE
+              }
+            }, 1000); //1 SEG DE INTERVALO
+          });
+        }
+        
+        salidaEtapa(23); // FUNCION CON EL DORSAL 23 COMO EL EJEMPLO DEL EXAMEN
+      </script>
+</body>
+</html>
+
+</html>

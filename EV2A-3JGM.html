@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input,
+        button {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        button {
+            background-color: #620af0;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5445a0;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px;
+        }
+    </style>
+    <title>Formulario de Registro Examen</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Formulario de Registro</h2>
+        <form id="formRegistro">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirmar Contraseña:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <label for="telefono">Número de teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+        <div id="messages"></div>
+    </div>
+
+    <script>
+
+        window.addEventListener("load", inicio); //FUNCION INICIO PARA QUE NO SE EJECUTE NINGUN JS ANTES DE QUE SE RECARGUE LA PAG
+
+
+        const mensajes = document.getElementById('messages'); //SE OBTIENE EL DIV DE LSO MENSAJES DE ERROR Y VALIDOS
+
+        function inicio() { //EN LA FUNCION INICIO SE METE EL EVENTO AL FORMULARIO Y A LOS CAMPOS DEL FORMULARIO
+            document.getElementById("formRegistro").addEventListener("submit", validar);
+            document.getElementById("nombre").addEventListener("input", validarNombre);
+            document.getElementById("email").addEventListener("input", validarCorreo);
+            document.getElementById("password").addEventListener("input", validarContraseña);
+            document.getElementById("confirmPassword").addEventListener("input", validarContraseña);
+            document.getElementById("telefono").addEventListener("input", validarTelefono);
+        }
+
+        function validar(event) { //SI TODOS LAS VALIDACIONES SON TRUE, PONDRÁ UN MENSAJE DE REGISTRO EXITOSO Y SE BORRARAN TODOS LOS CAMPOS
+            //CON RESET
+            const form = document.getElementById('formRegistro');
+            let nombreValido = validarNombre(); 
+            let correoValido = validarCorreo();
+            let contraseñaValido = validarContraseña(); 
+            let telefonoValido = validarTelefono();
+
+            if (nombreValido && correoValido && contraseñaValido && telefonoValido) { 
+                event.preventDefault(); //PARA QUE NO SE ENVIE AUTOMATICAMENTE AL DARLE AL BOTON Y EL MENSAJE DE EXITO SE PIERDA
+                displaySuccess('¡Registro exitoso!');
+                form.reset();
+            }
+            else {
+                event.preventDefault(); //PARA QUE NO SE ENVIE, EN ESTE CASO NO SE REINICIA PORQUE HAY ERRORES
+                displayError('¡Registro fallido!');
+                
+            }
+        }
+
+        function validarNombre() { //SE VALIDA EL NOMBRE
+        
+            const nombre = document.getElementById('nombre').value.trim(); //SE OBTIENE EL NOMBRE SIN ESPACIOS
+            if (!/^[a-zA-Z]+$/.test(nombre)) { //SE HACE UN TEST CON EL PATRON DADO, QUE QUIERE DECIR QUE NO PUEDA TENER NUMEROS
+                displayError('Nombre debe contener solo letras.'); //EN CASO DE QUE NO SE CUMPLA, MENSAJE DE ERROR Y SE DEVUELVE FALSE
+                return false;
+            }
+                displaySuccess("Nombre correcto"); //EN CASO QUE SEA VALIDO, SE MUESTRA MENSAJE DE VALIDEZ Y SE DEVUELVE TRUE
+                return true;
+
+        }
+
+        function validarCorreo() { //VALLIDACION DEL CORRE
+            const email = document.getElementById('email').value.trim();
+            if (!/^\S+@\S+\.\S+$/.test(email)) { //EL CORREO DEBE TENER @ Y .
+                displayError('Correo electrónico inválido.');
+                return false;
+            }
+            displaySuccess("Correo correcto");
+            return true;
+        }
+
+        function validarContraseña() { //VALIDACION CONTRASEÑA
+    
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password)) { //MAS DE 8 CARACTERES, MINIMO 1 MAYUSCULA, 1 MINUSCULA Y 1 NUMERO
+                displayError('Contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.');
+                return false;
+            }
+
+            
+            if (password !== confirmPassword) { //SI LOS VALORES DE AMBAS CONTRASEÑAS NO COINCIDEN ERROR
+                displayError('Las contraseñas no coinciden.');
+                return false;
+            }
+                displaySuccess("Contraseñas correcta");
+            return true
+            
+           
+           
+        }
+
+        function validarTelefono() { //SE VALIDA TELEFONO
+            const telefono = document.getElementById('telefono').value.trim();
+
+            if (!/^\d{9}$/.test(telefono)) { //DEBE SER SOLO NUMEROS Y EXACTAMENTE 9
+                displayError('Número de teléfono debe contener exactamente 9 dígitos.');
+                return false;
+            }
+            displaySuccess("Telefono correcto");
+            return true;
+        }
+
+
+        function displayError(message) { //MENSAJE DE ERROR
+            const error = document.getElementById("messages"); //SE OBTIENE EL DIV DE MENSAJE Y VALIDACIONES
+        
+            error.classList.add('error'); //SE LE AÑADE LA CLASE ERROR
+            error.style.color = "red"; //SE LE PONE EL ESTILO EN ROJO PARA QUE NO SE QUEDE VERDE
+            error.innerHTML=message;
+        }
+
+        function displaySuccess(message) { //MENSAJE DE VALIDACION
+            const valido = document.getElementById("messages"); 
+
+            valido.style.color = "green"; //SE LE PONE ESTILO COLOR VERDE PARA QUE NO QUEDE ROJO
+            valido.innerHTML=message; //SE IMPRIME EL MENSAJE
+        }
+    </script>
+</body>
+
+</html>
