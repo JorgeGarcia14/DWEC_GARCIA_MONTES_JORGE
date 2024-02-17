@@ -1,14 +1,47 @@
 window.addEventListener("load", inicio);
-let bombasMarcadasCorrectamente = 0;
-let celdaReveladas =0;
-let botonInicio = document.getElementById("bt_inicio");
-let intervaloCronometro; 
-let contadorFormateado;
-function inicio() {
-  botonInicio.addEventListener("click", iniciarJuego);
 
+let bombasMarcadasCorrectamente = 0; // Variable para almacenar la cantidad de bombas marcadas correctamente
+
+let celdaReveladas = 0;// Variable para contar el número de celdas reveladas
+
+let botonInicio = document.getElementById("bt_inicio"); // Seleccionar el botón de inicio del juego
+
+let intervaloCronometro;// Variable para almacenar el identificador del intervalo del cronómetro
+
+let contadorFormateado;// Variable para almacenar el contador de tiempo formateado
+
+let juegoIniciado = false;// Variable para seguir el estado del juego (si está iniciado o no)
+
+//Funcion para iniciar la partida
+function inicio() {
+  botonInicio.addEventListener("click", function() {
+    if (juegoIniciado) {
+      // Si el juego ya está en curso, reinicia el contador y el juego
+      reiniciarJuego();
+    } else {
+      // Si el juego aún no ha comenzado, inicia el juego
+      iniciarJuego();
+      juegoIniciado = true;
+    }
+  });
 }
 
+
+//Funcion para que cuando se le da muchas veces al boton de iniciar el contador no se lie
+
+function reiniciarJuego() {
+  // Detener el cronómetro y restablecer el contador
+  pararCronometro();
+  cronometro();
+  // Restablecer el juego
+  bombasMarcadasCorrectamente = 0;
+  celdaReveladas = 0;
+  botonInicio.innerHTML = "Iniciar juego";
+  crearTablero();
+  colocarBombas();
+  asignarEventosCeldas();
+  ganarPartida();
+}
 function iniciarJuego() {
   bombasMarcadasCorrectamente = 0;
   celdaReveladas =0;
@@ -18,10 +51,12 @@ function iniciarJuego() {
   cronometro();
   asignarEventosCeldas();
   ganarPartida();
+  
 }
 
 function cronometro() {
   let contador = 0;
+  document.getElementById("cronometro").innerHTML="Contador: 000" ;
   intervaloCronometro = setInterval(function() {
     contador++;
     if (contador > 999) {
